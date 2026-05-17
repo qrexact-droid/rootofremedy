@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Root of Remedy — AI-Powered Natural Wellness | $5.99/mo</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="description" content="AI-powered natural wellness — personalized herbal remedy plans, AI consultant, and remedy vault. $5.99/month, 7-day free trial.">
+  <meta property="og:title" content="Root of Remedy — AI-Powered Natural Wellness">
+  <meta property="og:description" content="Get instant AI-powered natural remedy recommendations, personalized wellness plans, and 500+ holistic protocols. $5.99/month — 7-day free trial.">
+  <meta property="og:image" content="https://rootofremedy.com/og-image.jpg">
+  <meta property="og:url" content="https://rootofremedy.com">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://rootofremedy.com/og-image.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -816,12 +828,15 @@
 
 <!-- NAV -->
 <nav>
-  <div class="logo">Root of <span>Remedy</span></div>
+  <a href="/" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+    <img src="/logo-dark.jpg" alt="Root of Remedy" style="height:44px;width:44px;border-radius:10px;object-fit:cover;">
+    <div class="logo" style="margin:0;">Root of <span>Remedy</span></div>
+  </a>
   <ul class="nav-links">
     <li><a href="#features">Features</a></li>
     <li><a href="#how">How It Works</a></li>
     <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#" class="nav-cta" onclick="openModal()">Start Free Trial</a></li>
+    <li><a href="#" class="nav-cta" onclick="startCheckout(); return false;">Start Free Trial</a></li>
   </ul>
 </nav>
 
@@ -1001,34 +1016,37 @@
 <footer>
   <div class="footer-top">
     <div>
-      <div class="footer-logo">Root of <span>Remedy</span></div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+        <img src="/logo-dark.jpg" alt="Root of Remedy" style="height:48px;width:48px;border-radius:10px;object-fit:cover;">
+        <div class="footer-logo" style="margin:0;">Root of <span>Remedy</span></div>
+      </div>
       <p class="footer-tagline">AI-powered natural wellness for everyone. Because good health shouldn't cost a fortune.</p>
     </div>
     <div class="footer-col">
       <h4>Product</h4>
       <ul>
-        <li><a href="#">AI Consultant</a></li>
-        <li><a href="#">Wellness Plans</a></li>
-        <li><a href="#">Remedy Vault</a></li>
-        <li><a href="#">Herb Planner</a></li>
+        <li><a href="/dashboard">AI Consultant</a></li>
+        <li><a href="/dashboard">Wellness Plans</a></li>
+        <li><a href="/dashboard">Remedy Vault</a></li>
+        <li><a href="/dashboard">Herb Planner</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Company</h4>
       <ul>
-        <li><a href="#">About</a></li>
+        <li><a href="#features">About</a></li>
         <li><a href="#">Blog</a></li>
-        <li><a href="#">Pinterest</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="https://pinterest.com/rootofremedy" target="_blank">Pinterest</a></li>
+        <li><a href="mailto:support@rootofremedy.com">Contact</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Legal</h4>
       <ul>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms of Service</a></li>
-        <li><a href="#">Disclaimer</a></li>
-        <li><a href="#">Refund Policy</a></li>
+        <li><a href="/privacy.html">Privacy Policy</a></li>
+        <li><a href="/terms.html">Terms of Service</a></li>
+        <li><a href="/privacy.html#disclaimer">Disclaimer</a></li>
+        <li><a href="/terms.html#refund">Refund Policy</a></li>
       </ul>
     </div>
   </div>
@@ -1093,9 +1111,11 @@
     }
   }
 
-  // Wire all CTA buttons to checkout
-  document.querySelectorAll('.btn-primary, .btn-gold, .nav-cta').forEach(el => {
-    el.addEventListener('click', e => { e.preventDefault(); startCheckout(); });
+  // Wire all CTA buttons to checkout (exclude anchor links)
+  document.querySelectorAll('.btn-primary, .btn-gold').forEach(el => {
+    if (!el.getAttribute('onclick')) {
+      el.addEventListener('click', e => { e.preventDefault(); startCheckout(); });
+    }
   });
 
   // AI CHAT DEMO — routes through our secure proxy

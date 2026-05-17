@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Root of Remedy — My Wellness Dashboard</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <style>
   #authGate {
     display: none;
@@ -712,46 +715,49 @@
 
 <!-- SIDEBAR -->
 <aside class="sidebar">
-  <div class="sidebar-logo">Root of <span>Remedy</span></div>
+  <div class="sidebar-logo" style="display:flex;align-items:center;gap:12px;">
+    <img src="/logo-dark.jpg" alt="" style="height:36px;width:36px;border-radius:8px;object-fit:cover;flex-shrink:0;">
+    <span>Root of <span>Remedy</span></span>
+  </div>
   <div class="sidebar-nav">
     <div class="sidebar-section">Main</div>
-    <a class="nav-item active" href="#">
+    <a class="nav-item active" href="/dashboard">
       <span class="nav-icon">🏠</span> Dashboard
     </a>
-    <a class="nav-item" href="#">
+    <a class="nav-item" href="#" onclick="focusChat(); return false;">
       <span class="nav-icon">🤖</span> AI Consultant
     </a>
-    <a class="nav-item" href="#">
+    <a class="nav-item" href="#" onclick="document.getElementById('protocolList').scrollIntoView({behavior:'smooth'}); return false;">
       <span class="nav-icon">📋</span> My Wellness Plan
     </a>
-    <a class="nav-item" href="#">
+    <a class="nav-item" href="#" onclick="openVault('immunity'); return false;">
       <span class="nav-icon">📚</span> Remedy Vault
     </a>
-    <a class="nav-item" href="#">
+    <a class="nav-item" href="#" onclick="openVault('sleep'); return false;">
       <span class="nav-icon">🌿</span> Herb Planner
     </a>
     <div class="sidebar-section">Track</div>
-    <a class="nav-item" href="#">
+    <a class="nav-item" href="#" onclick="document.querySelector('.journal-input').focus(); return false;">
       <span class="nav-icon">📓</span> Health Journal
     </a>
-    <a class="nav-item" href="#">
+    <a class="nav-item" href="#" onclick="document.getElementById('weekChart').scrollIntoView({behavior:'smooth'}); return false;">
       <span class="nav-icon">📊</span> Progress
     </a>
     <a class="nav-item" href="#">
       <span class="nav-icon">🔔</span> Reminders
     </a>
     <div class="sidebar-section">Account</div>
-    <a class="nav-item" href="#">
+    <a class="nav-item" href="mailto:support@rootofremedy.com">
       <span class="nav-icon">⚙️</span> Settings
     </a>
-    <a class="nav-item" href="#">
+    <a class="nav-item" href="https://billing.stripe.com/p/login/" target="_blank">
       <span class="nav-icon">💳</span> Billing
     </a>
   </div>
   <div class="sidebar-user">
-    <div class="user-avatar">J</div>
+    <div class="user-avatar" id="sidebarAvatar">M</div>
     <div>
-      <div class="user-name">Jasmine T.</div>
+      <div class="user-name" id="sidebarName">Member</div>
       <div class="user-plan">✦ Member · $5.99/mo</div>
     </div>
   </div>
@@ -763,7 +769,7 @@
   <!-- TOPBAR -->
   <div class="topbar">
     <div>
-      <div class="topbar-greeting">Good morning, <span>Jasmine</span> 🌿</div>
+      <div class="topbar-greeting">Good morning, <span id="memberFirstName">Member</span> 🌿</div>
       <div class="topbar-date" id="currentDate"></div>
     </div>
     <div class="topbar-actions">
@@ -1035,14 +1041,20 @@
     // Personalize dashboard
     window._rorToken = token;
     window._rorCustomerId = customerId;
-    const greeting = document.querySelector('.topbar-greeting span');
-    const avatarEl = document.querySelector('.user-avatar');
-    const nameEl = document.querySelector('.user-name');
-    if (greeting) greeting.textContent = memberName;
-    if (avatarEl) avatarEl.textContent = memberName[0]?.toUpperCase() || 'M';
+    const greeting = document.getElementById('memberFirstName');
+    const avatarEl = document.getElementById('sidebarAvatar');
+    const nameEl = document.getElementById('sidebarName');
+    const firstName = memberName.split(' ')[0];
+    if (greeting) greeting.textContent = firstName;
+    if (avatarEl) avatarEl.textContent = firstName[0]?.toUpperCase() || 'M';
     if (nameEl) nameEl.textContent = memberName;
+    // Update greeting based on time of day
+    const hour = new Date().getHours();
+    const timeGreet = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+    const greetDiv = document.querySelector('.topbar-greeting');
+    if (greetDiv) greetDiv.innerHTML = `${timeGreet}, <span style="color:var(--moss);font-style:italic;">${firstName}</span> 🌿`;
     const firstMsg = document.querySelector('#dashChat .bubble');
-    if (firstMsg) firstMsg.innerHTML = `Welcome back, ${memberName}! 🌿 How are you feeling today? I can adjust your protocol, answer questions about your herbs, or help with any new symptoms.`;
+    if (firstMsg) firstMsg.innerHTML = `Welcome back, ${firstName}! 🌿 How are you feeling today? I can adjust your protocol, answer questions about your herbs, or help with any new symptoms.`;
   }
 })();
 
