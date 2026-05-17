@@ -3,985 +3,487 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Root of Remedy — AI-Powered Natural Wellness | $5.99/mo</title>
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <meta name="description" content="AI-powered natural wellness — personalized herbal remedy plans, AI consultant, and remedy vault. $5.99/month, 7-day free trial.">
   <meta property="og:title" content="Root of Remedy — AI-Powered Natural Wellness">
-  <meta property="og:description" content="Get instant AI-powered natural remedy recommendations, personalized wellness plans, and 500+ holistic protocols. $5.99/month — 7-day free trial.">
+  <meta property="og:description" content="Take our 60-second quiz and get a personalized natural remedy plan. $5.99/month — 7-day free trial.">
   <meta property="og:image" content="https://rootofremedy.com/og-image.jpg">
   <meta property="og:url" content="https://rootofremedy.com">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://rootofremedy.com/og-image.jpg">
+  <title>Root of Remedy — AI Natural Wellness</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --cream: #F5F0E8;
-    --bark: #2C1A0E;
-    --moss: #3D5A3E;
-    --sage: #7A9E7E;
-    --gold: #C4933F;
-    --rust: #8B4513;
-    --light-sage: #EAF0E8;
-    --white: #FDFAF5;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--cream);
-    color: var(--bark);
-    font-family: 'DM Sans', sans-serif;
-    overflow-x: hidden;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 48px;
-    background: rgba(245,240,232,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(44,26,14,0.1);
-  }
-
-  .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--bark);
-    letter-spacing: -0.5px;
-  }
-
-  .logo span { color: var(--moss); }
-
-  .nav-links {
-    display: flex;
-    gap: 36px;
-    list-style: none;
-    align-items: center;
-  }
-
-  .nav-links a {
-    text-decoration: none;
-    color: var(--bark);
-    font-size: 14px;
-    font-weight: 500;
-    opacity: 0.7;
-    transition: opacity 0.2s;
-  }
-
-  .nav-links a:hover { opacity: 1; }
-
-  .nav-cta {
-    background: var(--moss);
-    color: var(--white) !important;
-    opacity: 1 !important;
-    padding: 10px 24px;
-    border-radius: 100px;
-    font-weight: 500 !important;
-  }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding: 120px 48px 80px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -100px; right: -200px;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(122,158,126,0.15) 0%, transparent 70%);
-    border-radius: 50%;
-  }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -150px; left: -100px;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(196,147,63,0.1) 0%, transparent 70%);
-    border-radius: 50%;
-  }
-
-  .hero-text { position: relative; z-index: 2; }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--light-sage);
-    border: 1px solid rgba(61,90,62,0.2);
-    padding: 6px 16px;
-    border-radius: 100px;
-    font-size: 13px;
-    color: var(--moss);
-    font-weight: 500;
-    margin-bottom: 32px;
-    animation: fadeUp 0.6s ease both;
-  }
-
-  .hero-badge::before { content: '🌿'; }
-
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(42px, 5vw, 72px);
-    line-height: 1.05;
-    letter-spacing: -2px;
-    margin-bottom: 24px;
-    animation: fadeUp 0.6s ease 0.1s both;
-  }
-
-  h1 em {
-    font-style: italic;
-    color: var(--moss);
-  }
-
-  .hero-sub {
-    font-size: 18px;
-    line-height: 1.7;
-    color: rgba(44,26,14,0.65);
-    max-width: 480px;
-    margin-bottom: 40px;
-    font-weight: 300;
-    animation: fadeUp 0.6s ease 0.2s both;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    animation: fadeUp 0.6s ease 0.3s both;
-  }
-
-  .btn-primary {
-    background: var(--moss);
-    color: var(--white);
-    padding: 16px 36px;
-    border-radius: 100px;
-    font-size: 16px;
-    font-weight: 500;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-decoration: none;
-    display: inline-block;
-  }
-
-  .btn-primary:hover {
-    background: var(--bark);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(44,26,14,0.2);
-  }
-
-  .price-note {
-    font-size: 14px;
-    color: rgba(44,26,14,0.5);
-  }
-
-  .price-note strong { color: var(--gold); }
-
-  /* HERO VISUAL */
-  .hero-visual {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    animation: fadeUp 0.6s ease 0.2s both;
-  }
-
-  .app-mockup {
-    background: var(--white);
-    border-radius: 32px;
-    padding: 32px;
-    width: 340px;
-    box-shadow: 0 40px 80px rgba(44,26,14,0.15), 0 0 0 1px rgba(44,26,14,0.08);
-    position: relative;
-  }
-
-  .mockup-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 24px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid rgba(44,26,14,0.08);
-  }
-
-  .mockup-avatar {
-    width: 40px; height: 40px;
-    background: var(--light-sage);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-  }
-
-  .mockup-title { font-family: 'Playfair Display', serif; font-size: 15px; }
-  .mockup-sub { font-size: 12px; color: var(--sage); }
-
-  .chat-bubble {
-    padding: 12px 16px;
-    border-radius: 18px;
-    font-size: 13px;
-    line-height: 1.5;
-    margin-bottom: 12px;
-    max-width: 85%;
-  }
-
-  .bubble-user {
-    background: var(--moss);
-    color: white;
-    margin-left: auto;
-    border-bottom-right-radius: 4px;
-  }
-
-  .bubble-ai {
-    background: var(--light-sage);
-    color: var(--bark);
-    border-bottom-left-radius: 4px;
-  }
-
-  .remedy-card {
-    background: linear-gradient(135deg, var(--moss), #2a4a2b);
-    border-radius: 16px;
-    padding: 16px;
-    color: white;
-    margin-top: 16px;
-  }
-
-  .remedy-card-label { font-size: 10px; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; }
-  .remedy-card-title { font-family: 'Playfair Display', serif; font-size: 18px; margin: 4px 0 8px; }
-  .remedy-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-  .remedy-tag {
-    background: rgba(255,255,255,0.15);
-    padding: 3px 10px;
-    border-radius: 100px;
-    font-size: 11px;
-  }
-
-  /* FEATURES SECTION */
-  .section {
-    padding: 100px 48px;
-  }
-
-  .section-label {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--gold);
-    font-weight: 500;
-    margin-bottom: 16px;
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 4vw, 52px);
-    line-height: 1.1;
-    letter-spacing: -1px;
-    margin-bottom: 16px;
-  }
-
-  .section-sub {
-    font-size: 17px;
-    color: rgba(44,26,14,0.6);
-    font-weight: 300;
-    max-width: 540px;
-    line-height: 1.7;
-  }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2px;
-    margin-top: 64px;
-    background: rgba(44,26,14,0.08);
-    border-radius: 24px;
-    overflow: hidden;
-  }
-
-  .feature-card {
-    background: var(--white);
-    padding: 48px;
-    transition: background 0.3s;
-  }
-
-  .feature-card:hover { background: var(--light-sage); }
-
-  .feature-icon {
-    font-size: 36px;
-    margin-bottom: 20px;
-    display: block;
-  }
-
-  .feature-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    margin-bottom: 12px;
-  }
-
-  .feature-desc {
-    font-size: 15px;
-    line-height: 1.7;
-    color: rgba(44,26,14,0.6);
-    font-weight: 300;
-  }
-
-  /* HOW IT WORKS */
-  .how-section {
-    background: var(--bark);
-    color: var(--cream);
-    padding: 100px 48px;
-  }
-
-  .how-section .section-label { color: var(--gold); }
-  .how-section .section-title { color: var(--cream); }
-  .how-section .section-sub { color: rgba(245,240,232,0.6); }
-
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 48px;
-    margin-top: 64px;
-  }
-
-  .step-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 64px;
-    color: rgba(245,240,232,0.1);
-    line-height: 1;
-    margin-bottom: 16px;
-  }
-
-  .step-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    color: var(--cream);
-    margin-bottom: 12px;
-  }
-
-  .step-desc {
-    font-size: 15px;
-    color: rgba(245,240,232,0.55);
-    line-height: 1.7;
-    font-weight: 300;
-  }
-
-  .step-icon { font-size: 28px; margin-bottom: 16px; display: block; }
-
-  /* PRICING */
-  .pricing-section { padding: 100px 48px; text-align: center; }
-
-  .pricing-card {
-    background: var(--bark);
-    color: var(--cream);
-    border-radius: 32px;
-    padding: 64px;
-    max-width: 520px;
-    margin: 64px auto 0;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .pricing-card::before {
-    content: '';
-    position: absolute;
-    top: -80px; right: -80px;
-    width: 300px; height: 300px;
-    background: radial-gradient(circle, rgba(122,158,126,0.2) 0%, transparent 70%);
-    border-radius: 50%;
-  }
-
-  .pricing-badge {
-    display: inline-block;
-    background: var(--gold);
-    color: var(--bark);
-    padding: 6px 18px;
-    border-radius: 100px;
-    font-size: 13px;
-    font-weight: 500;
-    margin-bottom: 32px;
-  }
-
-  .pricing-price {
-    font-family: 'Playfair Display', serif;
-    font-size: 80px;
-    line-height: 1;
-    color: var(--cream);
-    margin-bottom: 8px;
-  }
-
-  .pricing-price sup { font-size: 32px; vertical-align: top; margin-top: 12px; }
-  .pricing-price sub { font-size: 18px; opacity: 0.5; font-family: 'DM Sans', sans-serif; }
-
-  .pricing-tagline {
-    font-size: 16px;
-    opacity: 0.55;
-    margin-bottom: 40px;
-    font-weight: 300;
-  }
-
-  .pricing-features {
-    list-style: none;
-    text-align: left;
-    margin-bottom: 40px;
-  }
-
-  .pricing-features li {
-    padding: 12px 0;
-    border-bottom: 1px solid rgba(245,240,232,0.08);
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-weight: 300;
-  }
-
-  .pricing-features li::before {
-    content: '✦';
-    color: var(--gold);
-    font-size: 10px;
-    flex-shrink: 0;
-  }
-
-  .btn-gold {
-    background: var(--gold);
-    color: var(--bark);
-    padding: 18px 48px;
-    border-radius: 100px;
-    font-size: 17px;
-    font-weight: 500;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    transition: all 0.3s;
-    letter-spacing: -0.3px;
-  }
-
-  .btn-gold:hover {
-    background: #d4a34f;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(196,147,63,0.3);
-  }
-
-  .pricing-guarantee {
-    font-size: 13px;
-    opacity: 0.4;
-    margin-top: 20px;
-    font-weight: 300;
-  }
-
-  /* TESTIMONIALS */
-  .testimonials {
-    padding: 100px 48px;
-    background: var(--light-sage);
-  }
-
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 64px;
-  }
-
-  .testimonial-card {
-    background: var(--white);
-    border-radius: 20px;
-    padding: 32px;
-  }
-
-  .stars { color: var(--gold); font-size: 14px; margin-bottom: 16px; letter-spacing: 2px; }
-
-  .testimonial-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 17px;
-    line-height: 1.6;
-    font-style: italic;
-    margin-bottom: 20px;
-    color: var(--bark);
-  }
-
-  .testimonial-author {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--moss);
-  }
-
-  .testimonial-location {
-    font-size: 12px;
-    color: rgba(44,26,14,0.4);
-  }
-
-  /* AI CHAT SECTION */
-  .ai-section {
-    padding: 100px 48px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .chat-demo {
-    background: var(--white);
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(44,26,14,0.1);
-    border: 1px solid rgba(44,26,14,0.08);
-  }
-
-  .chat-header {
-    background: var(--moss);
-    padding: 20px 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: white;
-  }
-
-  .chat-avatar { font-size: 24px; }
-  .chat-name { font-family: 'Playfair Display', serif; font-size: 16px; }
-  .chat-status { font-size: 12px; opacity: 0.7; }
-  .online-dot { width: 8px; height: 8px; background: #6EE7B7; border-radius: 50%; display: inline-block; margin-right: 4px; }
-
-  .chat-body { padding: 24px; min-height: 320px; }
-
-  .chat-msg {
-    margin-bottom: 16px;
-    animation: fadeUp 0.4s ease both;
-  }
-
-  .chat-msg.user { text-align: right; }
-
-  .chat-msg .bubble {
-    display: inline-block;
-    padding: 10px 16px;
-    border-radius: 18px;
-    font-size: 14px;
-    line-height: 1.5;
-    max-width: 80%;
-    text-align: left;
-  }
-
-  .chat-msg.user .bubble {
-    background: var(--moss);
-    color: white;
-    border-bottom-right-radius: 4px;
-  }
-
-  .chat-msg.ai .bubble {
-    background: var(--light-sage);
-    color: var(--bark);
-    border-bottom-left-radius: 4px;
-  }
-
-  .chat-input-area {
-    padding: 16px 24px;
-    border-top: 1px solid rgba(44,26,14,0.08);
-    display: flex;
-    gap: 12px;
-    align-items: center;
-  }
-
-  .chat-input {
-    flex: 1;
-    background: var(--cream);
-    border: none;
-    border-radius: 100px;
-    padding: 10px 18px;
-    font-size: 14px;
-    font-family: 'DM Sans', sans-serif;
-    color: var(--bark);
-    outline: none;
-  }
-
-  .chat-send {
-    background: var(--moss);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 36px; height: 36px;
-    cursor: pointer;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-  }
-
-  .chat-send:hover { background: var(--bark); }
-
-  /* FOOTER */
-  footer {
-    background: var(--bark);
-    color: var(--cream);
-    padding: 64px 48px 32px;
-  }
-
-  .footer-top {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 48px;
-    padding-bottom: 48px;
-    border-bottom: 1px solid rgba(245,240,232,0.1);
-    margin-bottom: 32px;
-  }
-
-  .footer-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    margin-bottom: 16px;
-  }
-
-  .footer-logo span { color: var(--sage); }
-
-  .footer-tagline {
-    font-size: 14px;
-    opacity: 0.5;
-    line-height: 1.7;
-    font-weight: 300;
-    max-width: 260px;
-  }
-
-  .footer-col h4 {
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--gold);
-    margin-bottom: 20px;
-    font-weight: 500;
-  }
-
-  .footer-col ul { list-style: none; }
-  .footer-col li { margin-bottom: 10px; }
-  .footer-col a {
-    color: rgba(245,240,232,0.5);
-    text-decoration: none;
-    font-size: 14px;
-    transition: color 0.2s;
-    font-weight: 300;
-  }
-  .footer-col a:hover { color: var(--cream); }
-
-  .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 13px;
-    color: rgba(245,240,232,0.3);
-  }
-
-  /* SIGNUP MODAL */
-  .modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(44,26,14,0.6);
-    backdrop-filter: blur(8px);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .modal-overlay.active { display: flex; }
-
-  .modal {
-    background: var(--white);
-    border-radius: 32px;
-    padding: 48px;
-    max-width: 480px;
-    width: 90%;
-    position: relative;
-    animation: scaleIn 0.3s ease;
-  }
-
-  .modal-close {
-    position: absolute;
-    top: 20px; right: 20px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: rgba(44,26,14,0.4);
-  }
-
-  .modal-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    margin-bottom: 8px;
-  }
-
-  .modal-sub { font-size: 15px; color: rgba(44,26,14,0.55); margin-bottom: 32px; font-weight: 300; }
-
-  .form-group { margin-bottom: 16px; }
-
-  .form-label { font-size: 13px; font-weight: 500; margin-bottom: 6px; display: block; color: var(--bark); }
-
-  .form-input {
-    width: 100%;
-    padding: 14px 18px;
-    border: 1.5px solid rgba(44,26,14,0.15);
-    border-radius: 12px;
-    font-size: 15px;
-    font-family: 'DM Sans', sans-serif;
-    color: var(--bark);
-    background: var(--cream);
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
-  .form-input:focus { border-color: var(--moss); }
-
-  .form-submit {
-    width: 100%;
-    background: var(--moss);
-    color: white;
-    padding: 16px;
-    border-radius: 100px;
-    font-size: 16px;
-    font-weight: 500;
-    border: none;
-    cursor: pointer;
-    margin-top: 8px;
-    transition: all 0.3s;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  .form-submit:hover { background: var(--bark); }
-
-  .form-terms { font-size: 12px; color: rgba(44,26,14,0.4); text-align: center; margin-top: 12px; font-weight: 300; }
-
-  .success-state {
-    text-align: center;
-    padding: 20px 0;
-    display: none;
-  }
-
-  .success-icon { font-size: 64px; margin-bottom: 16px; }
-  .success-title { font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 8px; }
-  .success-sub { font-size: 15px; color: rgba(44,26,14,0.55); font-weight: 300; }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes scaleIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-  }
-
-  .typing span {
-    display: inline-block;
-    width: 6px; height: 6px;
-    background: var(--sage);
-    border-radius: 50%;
-    margin: 0 2px;
-    animation: pulse 1.2s ease infinite;
-  }
-  .typing span:nth-child(2) { animation-delay: 0.2s; }
-  .typing span:nth-child(3) { animation-delay: 0.4s; }
-
-  /* MOBILE */
-  @media (max-width: 768px) {
-    nav { padding: 16px 20px; }
-    .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; padding: 100px 20px 60px; gap: 48px; }
-    .hero-visual { display: none; }
-    .section { padding: 60px 20px; }
-    .features-grid { grid-template-columns: 1fr; }
-    .feature-card { padding: 32px; }
-    .how-section { padding: 60px 20px; }
-    .steps { grid-template-columns: 1fr; gap: 32px; }
-    .pricing-section { padding: 60px 20px; }
-    .pricing-card { padding: 40px 28px; }
-    .testimonials { padding: 60px 20px; }
-    .testimonials-grid { grid-template-columns: 1fr; }
-    .ai-section { grid-template-columns: 1fr; padding: 60px 20px; gap: 40px; }
-    footer { padding: 48px 20px 24px; }
-    .footer-top { grid-template-columns: 1fr; gap: 32px; }
-    .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-  }
+:root {
+  --cream:#F5F0E8;--bark:#2C1A0E;--moss:#3D5A3E;--sage:#7A9E7E;
+  --gold:#C4933F;--light-sage:#EAF0E8;--white:#FDFAF5;--dark:#1E2D1F;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--cream);color:var(--bark);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 48px;background:rgba(245,240,232,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(44,26,14,0.08);}
+.logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--bark);}
+.logo span{color:var(--moss);}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center;}
+.nav-links a{text-decoration:none;color:var(--bark);font-size:14px;opacity:0.65;transition:opacity 0.2s;}
+.nav-links a:hover{opacity:1;}
+.nav-cta{background:var(--moss)!important;color:var(--white)!important;opacity:1!important;padding:10px 22px;border-radius:100px;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(122,158,126,0.12) 0%,transparent 65%);border-radius:50%;pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--light-sage);border:1px solid rgba(61,90,62,0.2);padding:6px 18px;border-radius:100px;font-size:13px;color:var(--moss);font-weight:500;margin-bottom:28px;animation:fadeUp 0.5s ease both;}
+h1{font-family:'Playfair Display',serif;font-size:clamp(40px,6vw,80px);line-height:1.05;letter-spacing:-2px;margin-bottom:20px;animation:fadeUp 0.5s ease 0.1s both;max-width:800px;}
+h1 em{font-style:italic;color:var(--moss);}
+.hero-sub{font-size:18px;color:rgba(44,26,14,0.6);max-width:520px;line-height:1.7;font-weight:300;margin-bottom:40px;animation:fadeUp 0.5s ease 0.2s both;}
+.hero-cta-wrap{animation:fadeUp 0.5s ease 0.3s both;}
+
+/* QUIZ FUNNEL */
+.quiz-box{background:var(--white);border-radius:28px;padding:40px;max-width:600px;margin:0 auto;box-shadow:0 24px 64px rgba(44,26,14,0.12);border:1px solid rgba(44,26,14,0.06);}
+.quiz-step{display:none;}
+.quiz-step.active{display:block;}
+.quiz-progress{display:flex;gap:6px;margin-bottom:28px;}
+.quiz-dot{flex:1;height:4px;background:rgba(44,26,14,0.1);border-radius:100px;transition:background 0.3s;}
+.quiz-dot.done{background:var(--moss);}
+.quiz-q{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:8px;line-height:1.3;}
+.quiz-sub{font-size:14px;color:rgba(44,26,14,0.5);margin-bottom:24px;font-weight:300;}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.quiz-opt{background:var(--cream);border:1.5px solid rgba(44,26,14,0.12);border-radius:14px;padding:14px 16px;font-size:14px;cursor:pointer;transition:all 0.2s;text-align:left;font-family:'DM Sans',sans-serif;color:var(--bark);}
+.quiz-opt:hover,.quiz-opt.selected{border-color:var(--moss);background:var(--light-sage);}
+.quiz-opt.selected{border-width:2px;}
+.quiz-opt-icon{font-size:20px;margin-bottom:6px;display:block;}
+.quiz-next{background:var(--moss);color:white;border:none;border-radius:100px;padding:14px 32px;font-size:15px;font-weight:500;cursor:pointer;margin-top:20px;font-family:'DM Sans',sans-serif;transition:all 0.3s;width:100%;}
+.quiz-next:hover{background:var(--bark);}
+.quiz-next:disabled{opacity:0.4;cursor:not-allowed;}
+
+/* RESULTS PREVIEW */
+.results-preview{text-align:left;}
+.results-header{background:linear-gradient(135deg,var(--moss),#2a4a2b);border-radius:18px;padding:24px;color:white;margin-bottom:20px;}
+.results-label{font-size:11px;opacity:0.6;text-transform:uppercase;letter-spacing:2px;}
+.results-name{font-family:'Playfair Display',serif;font-size:24px;margin:6px 0 4px;}
+.results-sub{font-size:13px;opacity:0.7;}
+.results-items{display:grid;gap:10px;margin-bottom:20px;}
+.result-item{background:var(--cream);border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px;position:relative;overflow:hidden;}
+.result-item.locked::after{content:'🔒 Unlock with trial';position:absolute;inset:0;background:rgba(245,240,232,0.85);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:var(--moss);backdrop-filter:blur(2px);}
+.result-icon{font-size:24px;flex-shrink:0;}
+.result-text strong{display:block;font-size:14px;font-weight:500;}
+.result-text span{font-size:12px;color:rgba(44,26,14,0.5);}
+.unlock-cta{text-align:center;}
+.unlock-btn{background:var(--gold);color:var(--bark);border:none;border-radius:100px;padding:16px 36px;font-size:16px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.3s;width:100%;}
+.unlock-btn:hover{background:#d4a34f;transform:translateY(-2px);}
+.unlock-note{font-size:12px;color:rgba(44,26,14,0.4);margin-top:10px;}
+
+/* SOCIAL PROOF */
+.proof-bar{background:var(--dark);padding:16px 48px;display:flex;justify-content:center;align-items:center;gap:48px;}
+.proof-item{color:rgba(245,240,232,0.7);font-size:13px;display:flex;align-items:center;gap:8px;}
+.proof-num{color:var(--gold);font-weight:500;font-size:15px;}
+
+/* FEATURES */
+.section{padding:100px 48px;}
+.section-label{font-size:11px;text-transform:uppercase;letter-spacing:3px;color:var(--gold);font-weight:500;margin-bottom:12px;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,52px);line-height:1.1;letter-spacing:-1px;margin-bottom:14px;}
+.section-sub{font-size:16px;color:rgba(44,26,14,0.6);font-weight:300;max-width:520px;line-height:1.7;}
+.features-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:56px;background:rgba(44,26,14,0.08);border-radius:24px;overflow:hidden;}
+.feat{background:var(--white);padding:44px;transition:background 0.3s;}
+.feat:hover{background:var(--light-sage);}
+.feat-icon{font-size:32px;margin-bottom:16px;display:block;}
+.feat-title{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:10px;}
+.feat-desc{font-size:14px;line-height:1.7;color:rgba(44,26,14,0.6);font-weight:300;}
+
+/* HOW IT WORKS */
+.how{background:var(--dark);padding:100px 48px;}
+.how .section-title{color:var(--cream);}
+.how .section-sub{color:rgba(245,240,232,0.55);}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:56px;}
+.step-num{font-family:'Playfair Display',serif;font-size:56px;color:rgba(245,240,232,0.08);line-height:1;margin-bottom:12px;}
+.step-icon{font-size:28px;margin-bottom:14px;display:block;}
+.step-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--cream);margin-bottom:10px;}
+.step-desc{font-size:14px;color:rgba(245,240,232,0.5);line-height:1.7;font-weight:300;}
+
+/* PRICING */
+.pricing{padding:100px 48px;text-align:center;}
+.pricing-toggle{display:inline-flex;background:rgba(44,26,14,0.08);border-radius:100px;padding:4px;margin:32px auto;gap:4px;}
+.ptog-btn{padding:10px 24px;border-radius:100px;font-size:14px;border:none;background:none;cursor:pointer;font-family:'DM Sans',sans-serif;color:var(--bark);transition:all 0.2s;font-weight:500;}
+.ptog-btn.active{background:var(--moss);color:white;}
+.save-badge{background:var(--gold);color:var(--bark);font-size:11px;padding:2px 8px;border-radius:100px;font-weight:500;margin-left:6px;}
+.pricing-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:760px;margin:0 auto;}
+.price-card{background:var(--white);border-radius:28px;padding:40px;border:1.5px solid rgba(44,26,14,0.08);text-align:left;position:relative;}
+.price-card.featured{background:var(--dark);border-color:var(--gold);}
+.price-tag{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--gold);font-weight:500;margin-bottom:12px;}
+.price-name{font-family:'Playfair Display',serif;font-size:24px;color:var(--bark);margin-bottom:20px;}
+.price-card.featured .price-name{color:var(--cream);}
+.price-amount{display:flex;align-items:baseline;gap:4px;margin-bottom:6px;}
+.price-big{font-family:'Playfair Display',serif;font-size:52px;color:var(--bark);}
+.price-card.featured .price-big{color:var(--cream);}
+.price-period{font-size:14px;color:rgba(44,26,14,0.4);}
+.price-card.featured .price-period{color:rgba(245,240,232,0.4);}
+.price-equiv{font-size:13px;color:var(--moss);margin-bottom:24px;font-weight:500;}
+.price-card.featured .price-equiv{color:var(--sage);}
+.price-features{list-style:none;margin-bottom:28px;}
+.price-features li{padding:9px 0;border-bottom:1px solid rgba(44,26,14,0.06);font-size:14px;display:flex;align-items:center;gap:10px;font-weight:300;}
+.price-card.featured .price-features li{border-color:rgba(245,240,232,0.08);color:var(--cream);}
+.price-features li::before{content:'✦';color:var(--gold);font-size:10px;flex-shrink:0;}
+.price-btn{width:100%;padding:15px;border-radius:100px;font-size:15px;font-weight:500;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.3s;}
+.price-btn-outline{background:transparent;border:1.5px solid var(--moss);color:var(--moss);}
+.price-btn-outline:hover{background:var(--moss);color:white;}
+.price-btn-gold{background:var(--gold);color:var(--bark);}
+.price-btn-gold:hover{background:#d4a34f;transform:translateY(-2px);}
+.popular-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--bark);padding:4px 20px;border-radius:100px;font-size:12px;font-weight:500;white-space:nowrap;}
+.guarantee{font-size:13px;color:rgba(44,26,14,0.4);text-align:center;margin-top:20px;}
+
+/* REFERRAL */
+.referral{background:var(--light-sage);padding:80px 48px;text-align:center;}
+.referral-card{background:var(--white);border-radius:28px;padding:48px;max-width:640px;margin:40px auto 0;}
+.referral-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:28px 0;}
+.ref-step{text-align:center;}
+.ref-num{width:36px;height:36px;background:var(--moss);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;margin:0 auto 12px;}
+.ref-title{font-size:14px;font-weight:500;margin-bottom:4px;}
+.ref-desc{font-size:12px;color:rgba(44,26,14,0.5);line-height:1.5;font-weight:300;}
+.ref-cta{background:var(--moss);color:white;border:none;border-radius:100px;padding:14px 32px;font-size:15px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;}
+
+/* TESTIMONIALS */
+.testimonials{padding:100px 48px;}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px;}
+.testi{background:var(--white);border-radius:20px;padding:28px;}
+.stars{color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:14px;}
+.testi-text{font-family:'Playfair Display',serif;font-size:16px;line-height:1.6;font-style:italic;margin-bottom:18px;}
+.testi-author{font-size:13px;font-weight:500;color:var(--moss);}
+.testi-loc{font-size:12px;color:rgba(44,26,14,0.4);}
+
+/* FOOTER */
+footer{background:var(--dark);color:var(--cream);padding:60px 48px 28px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(245,240,232,0.08);margin-bottom:28px;}
+.footer-logo{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:12px;}
+.footer-logo span{color:var(--sage);}
+.footer-tagline{font-size:13px;opacity:0.45;line-height:1.7;font-weight:300;max-width:240px;}
+.footer-col h4{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--gold);margin-bottom:16px;font-weight:500;}
+.footer-col ul{list-style:none;}
+.footer-col li{margin-bottom:8px;}
+.footer-col a{color:rgba(245,240,232,0.45);text-decoration:none;font-size:13px;transition:color 0.2s;font-weight:300;}
+.footer-col a:hover{color:var(--cream);}
+.footer-bottom{display:flex;justify-content:space-between;font-size:12px;color:rgba(245,240,232,0.25);}
+
+/* MODALS */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(44,26,14,0.6);backdrop-filter:blur(8px);z-index:500;align-items:center;justify-content:center;}
+.modal-bg.open{display:flex;}
+.modal{background:var(--white);border-radius:28px;padding:44px;max-width:460px;width:90%;position:relative;animation:scaleIn 0.3s ease;}
+.modal-close{position:absolute;top:18px;right:20px;background:none;border:none;font-size:22px;cursor:pointer;color:rgba(44,26,14,0.35);}
+.modal-title{font-family:'Playfair Display',serif;font-size:28px;margin-bottom:6px;}
+.modal-sub{font-size:14px;color:rgba(44,26,14,0.5);margin-bottom:28px;font-weight:300;line-height:1.5;}
+.form-group{margin-bottom:14px;}
+.form-label{font-size:12px;font-weight:500;display:block;margin-bottom:5px;}
+.form-input{width:100%;padding:13px 16px;border:1.5px solid rgba(44,26,14,0.12);border-radius:12px;font-size:14px;font-family:'DM Sans',sans-serif;color:var(--bark);background:var(--cream);outline:none;transition:border-color 0.2s;}
+.form-input:focus{border-color:var(--moss);}
+.plan-select{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;}
+.plan-opt{border:1.5px solid rgba(44,26,14,0.12);border-radius:12px;padding:12px;cursor:pointer;transition:all 0.2s;text-align:center;}
+.plan-opt.selected{border-color:var(--moss);background:var(--light-sage);}
+.plan-opt-name{font-size:13px;font-weight:500;}
+.plan-opt-price{font-size:18px;font-weight:700;font-family:'Playfair Display',serif;color:var(--moss);margin:4px 0;}
+.plan-opt-note{font-size:11px;color:rgba(44,26,14,0.45);}
+.form-submit{width:100%;background:var(--moss);color:white;padding:15px;border-radius:100px;font-size:15px;font-weight:500;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.3s;margin-top:6px;}
+.form-submit:hover{background:var(--bark);}
+.form-terms{font-size:11px;color:rgba(44,26,14,0.35);text-align:center;margin-top:10px;}
+.success-state{text-align:center;padding:20px 0;display:none;}
+.success-icon{font-size:56px;margin-bottom:14px;}
+.success-title{font-family:'Playfair Display',serif;font-size:26px;margin-bottom:8px;}
+.success-sub{font-size:14px;color:rgba(44,26,14,0.5);line-height:1.6;font-weight:300;}
+
+/* ANIMS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes scaleIn{from{opacity:0;transform:scale(0.96);}to{opacity:1;transform:scale(1);}}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.typing span{display:inline-block;width:6px;height:6px;background:var(--sage);border-radius:50%;margin:0 2px;animation:pulse 1.2s ease infinite;}
+.typing span:nth-child(2){animation-delay:0.2s;}
+.typing span:nth-child(3){animation-delay:0.4s;}
+
+@media(max-width:768px){
+  nav{padding:14px 20px;}
+  .nav-links{display:none;}
+  .section,.how,.pricing,.referral,.testimonials{padding:60px 20px;}
+  .features-grid,.steps,.pricing-cards,.testi-grid,.referral-steps{grid-template-columns:1fr;}
+  .proof-bar{gap:20px;flex-wrap:wrap;padding:16px 20px;}
+  .footer-grid{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column;gap:8px;}
+  .quiz-options{grid-template-columns:1fr;}
+}
+
+  .result-item{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid rgba(44,26,14,0.06);}
+  .result-item:last-child{border-bottom:none;}
+  .result-item.locked{opacity:0.5;}
+  .ri-icon{font-size:24px;flex-shrink:0;margin-top:2px;}
+  .ri-name{font-size:14px;font-weight:500;color:var(--bark);margin-bottom:4px;}
+  .ri-detail{font-size:13px;color:rgba(44,26,14,0.6);line-height:1.5;}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="/" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
-    <img src="/logo-dark.jpg" alt="Root of Remedy" style="height:44px;width:44px;border-radius:10px;object-fit:cover;">
-    <div class="logo" style="margin:0;">Root of <span>Remedy</span></div>
-  </a>
+      <img src="/logo-dark.jpg" alt="Root of Remedy" style="height:44px;width:44px;border-radius:10px;object-fit:cover;">
+      <div class="logo" style="margin:0;">Root of <span>Remedy</span></div>
+    </a>
   <ul class="nav-links">
     <li><a href="#features">Features</a></li>
     <li><a href="#how">How It Works</a></li>
     <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#" class="nav-cta" onclick="startCheckout(); return false;">Start Free Trial</a></li>
+    <li><a href="#" class="nav-cta" onclick="openSignup();return false;">Start Free Trial</a></li>
   </ul>
 </nav>
 
-<!-- HERO -->
+<!-- HERO + QUIZ -->
 <section class="hero">
-  <div class="hero-text">
-    <div class="hero-badge">AI-Powered Natural Wellness</div>
-    <h1>Your personal<br><em>remedy guide,</em><br>always with you.</h1>
-    <p class="hero-sub">Get instant AI-powered natural remedy recommendations, personalized wellness plans, and a vault of holistic health protocols — all for less than a coffee.</p>
-    <div class="hero-actions">
-      <a href="#" class="btn-primary" onclick="openModal(); return false;">Start for $5.99/mo</a>
-      <span class="price-note">Cancel anytime · <strong>7-day free trial</strong></span>
-    </div>
-  </div>
-  <div class="hero-visual">
-    <div class="app-mockup">
-      <div class="mockup-header">
-        <div class="mockup-avatar">🌿</div>
-        <div>
-          <div class="mockup-title">Root of Remedy AI</div>
-          <div class="mockup-sub">Your wellness companion</div>
+  <div class="hero-badge">🌿 AI-Powered Natural Wellness</div>
+  <h1>Find out what your<br>body is <em>telling you.</em></h1>
+  <p class="hero-sub">Take our 60-second wellness quiz and get a personalized natural remedy plan built by AI — free, instant, just for you.</p>
+  <div class="hero-cta-wrap">
+    <div class="quiz-box">
+
+      <!-- PROGRESS -->
+      <div class="quiz-progress" id="quizProgress">
+        <div class="quiz-dot done" id="dot0"></div>
+        <div class="quiz-dot" id="dot1"></div>
+        <div class="quiz-dot" id="dot2"></div>
+        <div class="quiz-dot" id="dot3"></div>
+        <div class="quiz-dot" id="dot4"></div>
+      </div>
+
+      <!-- STEP 1 -->
+      <div class="quiz-step active" id="step0">
+        <div class="quiz-q">What's your biggest health concern right now?</div>
+        <div class="quiz-sub">Select the one that matters most today</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="selectOpt(this,'concern','sleep')"><span class="quiz-opt-icon">😴</span>Poor sleep & fatigue</button>
+          <button class="quiz-opt" onclick="selectOpt(this,'concern','stress')"><span class="quiz-opt-icon">😰</span>Stress & anxiety</button>
+          <button class="quiz-opt" onclick="selectOpt(this,'concern','inflammation')"><span class="quiz-opt-icon">🔥</span>Pain & inflammation</button>
+          <button class="quiz-opt" onclick="selectOpt(this,'concern','gut')"><span class="quiz-opt-icon">🫄</span>Gut & digestion</button>
+          <button class="quiz-opt" onclick="selectOpt(this,'concern','immunity')"><span class="quiz-opt-icon">🛡️</span>Low immunity</button>
+          <button class="quiz-opt" onclick="selectOpt(this,'concern','skin')"><span class="quiz-opt-icon">✨</span>Skin issues</button>
+        </div>
+        <button class="quiz-next" onclick="nextStep()" disabled id="next0">Continue →</button>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="quiz-step" id="step1">
+        <div class="quiz-q">How long have you been dealing with this?</div>
+        <div class="quiz-sub">This helps us build the right protocol depth</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="selectOpt(this,'duration','recent')"><span class="quiz-opt-icon">📅</span>Just started (under a month)</button>
+          <button class="quiz-opt" onclick="selectOpt(this,'duration','months')"><span class="quiz-opt-icon">🗓️</span>A few months</button>
+          <button class="quiz-opt" onclick="selectOpt(this,'duration','year')"><span class="quiz-opt-icon">📆</span>Over a year</button>
+          <button class="quiz-opt" onclick="selectOpt(this,'duration','chronic')"><span class="quiz-opt-icon">⏳</span>Chronic / years</button>
+        </div>
+        <button class="quiz-next" onclick="nextStep()" disabled id="next1">Continue →</button>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="quiz-step" id="step2">
+        <div class="quiz-q">Have you tried natural remedies before?</div>
+        <div class="quiz-sub">No wrong answers — this shapes your plan</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="selectOpt(this,'experience','none')"><span class="quiz-opt-icon">🌱</span>Complete beginner</button>
+          <button class="quiz-opt" onclick="selectOpt(this,'experience','some')"><span class="quiz-opt-icon">🌿</span>Tried a few things</button>
+          <button class="quiz-opt" onclick="selectOpt(this,'experience','familiar')"><span class="quiz-opt-icon">🍃</span>Fairly familiar with herbs</button>
+          <button class="quiz-opt" onclick="selectOpt(this,'experience','advanced')"><span class="quiz-opt-icon">🌳</span>Very knowledgeable</button>
+        </div>
+        <button class="quiz-next" onclick="nextStep()" disabled id="next2">Continue →</button>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="quiz-step" id="step3">
+        <div class="quiz-q">What's your wellness goal?</div>
+        <div class="quiz-sub">We'll track your progress toward this</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" onclick="selectOpt(this,'goal','relief')"><span class="quiz-opt-icon">🎯</span>Get relief fast</button>
+          <button class="quiz-opt" onclick="selectOpt(this,'goal','longterm')"><span class="quiz-opt-icon">🌱</span>Long-term root healing</button>
+          <button class="quiz-opt" onclick="selectOpt(this,'goal','maintenance')"><span class="quiz-opt-icon">⚖️</span>Maintain good health</button>
+          <button class="quiz-opt" onclick="selectOpt(this,'goal','natural')"><span class="quiz-opt-icon">🌿</span>Go fully natural</button>
+        </div>
+        <button class="quiz-next" onclick="nextStep()" disabled id="next3">Continue →</button>
+      </div>
+
+      <!-- STEP 5 - EMAIL -->
+      <div class="quiz-step" id="step4">
+        <div class="quiz-q">Where should we send your plan?</div>
+        <div class="quiz-sub">Your personalized remedy protocol is ready. Enter your email to see it.</div>
+        <div style="margin-top:16px;">
+          <input type="text" class="form-input" id="quizName" placeholder="Your first name" style="margin-bottom:10px;" oninput="checkEmailStep()">
+          <input type="email" class="form-input" id="quizEmail" placeholder="your@email.com" oninput="checkEmailStep()">
+        </div>
+        <button class="quiz-next" onclick="showResults()" disabled id="next4">Show My Remedy Plan →</button>
+        <p style="font-size:11px;color:rgba(44,26,14,0.35);text-align:center;margin-top:10px;">No spam. Unsubscribe anytime.</p>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="quiz-step" id="stepResults">
+        <div class="results-preview">
+          <div class="results-header">
+            <div class="results-label">Your Personalized Plan</div>
+            <div class="results-name" id="resultsTitle">Your Wellness Protocol</div>
+            <div class="results-sub" id="resultsSub">Built by AI based on your answers</div>
+          </div>
+          <div class="results-items" id="resultsItems"></div>
+          <div class="unlock-cta">
+            <button class="unlock-btn" onclick="openSignup()">Start 7-Day Free Trial to Unlock Everything</button>
+            <p class="unlock-note">Card required · $5.99/mo or $47.99/year · Cancel anytime</p>
+          </div>
         </div>
       </div>
-      <div class="chat-bubble bubble-user">I've had a headache for 3 days and feel run down...</div>
-      <div class="chat-bubble bubble-ai">Based on your symptoms, here's a natural protocol for you:</div>
-      <div class="remedy-card">
-        <div class="remedy-card-label">Your Remedy Plan</div>
-        <div class="remedy-card-title">Tension Relief Protocol</div>
-        <div class="remedy-tags">
-          <span class="remedy-tag">🌿 Feverfew</span>
-          <span class="remedy-tag">💧 Magnesium</span>
-          <span class="remedy-tag">🫖 Ginger Tea</span>
-          <span class="remedy-tag">😴 Sleep Hygiene</span>
-        </div>
-      </div>
+
     </div>
   </div>
 </section>
+
+<!-- SOCIAL PROOF BAR -->
+<div class="proof-bar">
+  <div class="proof-item"><span class="proof-num">2,400+</span> active members</div>
+  <div class="proof-item"><span class="proof-num">500+</span> natural remedy protocols</div>
+  <div class="proof-item"><span class="proof-num">4.8★</span> average rating</div>
+  <div class="proof-item"><span class="proof-num">$5.99</span> less than one coffee/week</div>
+</div>
 
 <!-- FEATURES -->
 <section class="section" id="features">
   <div class="section-label">Everything Included</div>
   <h2 class="section-title">Four tools.<br>One subscription.</h2>
   <p class="section-sub">Everything you need to take control of your health naturally — powered by AI, available 24/7.</p>
-
   <div class="features-grid">
-    <div class="feature-card">
-      <span class="feature-icon">🤖</span>
-      <div class="feature-title">AI Remedy Consultant</div>
-      <p class="feature-desc">Describe your symptoms and get instant, personalized natural remedy recommendations backed by herbal medicine traditions and modern research.</p>
+    <div class="feat">
+      <span class="feat-icon">🤖</span>
+      <div class="feat-title">AI Remedy Consultant</div>
+      <p class="feat-desc">Unlimited natural remedy consultations powered by AI. Describe any symptom and get a personalized herbal protocol instantly — 24 hours a day, 7 days a week.</p>
     </div>
-    <div class="feature-card">
-      <span class="feature-icon">📋</span>
-      <div class="feature-title">Personalized Wellness Plans</div>
-      <p class="feature-desc">Take a health quiz and receive a fully customized monthly wellness protocol — herbs, supplements, lifestyle adjustments, and daily routines built for you.</p>
+    <div class="feat">
+      <span class="feat-icon">📋</span>
+      <div class="feat-title">Personalized Wellness Plans</div>
+      <p class="feat-desc">A fully custom monthly wellness protocol built around your quiz results and health goals. Herbs, supplements, lifestyle adjustments and daily routines — all tailored to you.</p>
     </div>
-    <div class="feature-card">
-      <span class="feature-icon">📚</span>
-      <div class="feature-title">Remedy Vault</div>
-      <p class="feature-desc">Access hundreds of natural remedy recipes, herbal protocols, and holistic health guides. New content added every week. Search by symptom, herb, or condition.</p>
+    <div class="feat">
+      <span class="feat-icon">📚</span>
+      <div class="feat-title">Remedy Vault</div>
+      <p class="feat-desc">Access 500+ natural remedy protocols, herbal recipes, and holistic health guides. Search by symptom, condition, or herb. New content added every week.</p>
     </div>
-    <div class="feature-card">
-      <span class="feature-icon">🥗</span>
-      <div class="feature-title">Supplement & Herb Planner</div>
-      <p class="feature-desc">Build and track your daily supplement stack. Get timing recommendations, interaction warnings, and dosage guidance tailored to your health goals.</p>
+    <div class="feat">
+      <span class="feat-icon">🌿</span>
+      <div class="feat-title">Supplement & Herb Planner</div>
+      <p class="feat-desc">Build and track your daily supplement stack. Get dosage guidance, timing recommendations, interaction warnings, and daily check-in reminders personalized to your protocol.</p>
     </div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<section class="how-section" id="how">
+<section class="how" id="how">
   <div class="section-label">Simple Process</div>
   <h2 class="section-title" style="color:var(--cream)">From symptom to<br><em style="color:var(--sage)">remedy in seconds.</em></h2>
   <p class="section-sub">No appointments. No waiting rooms. No expensive consultations. Just answers.</p>
-
   <div class="steps">
     <div>
       <div class="step-num">01</div>
       <span class="step-icon">📝</span>
-      <div class="step-title">Tell us how you feel</div>
-      <p class="step-desc">Describe your symptoms, health goals, or questions in plain language. Our AI understands natural speech — no medical jargon needed.</p>
+      <div class="step-title">Take the quiz</div>
+      <p class="step-desc">Answer 5 quick questions about your symptoms and health goals. Our AI analyzes your answers in real time to build your unique profile.</p>
     </div>
     <div>
       <div class="step-num">02</div>
       <span class="step-icon">🧠</span>
-      <div class="step-title">AI builds your protocol</div>
-      <p class="step-desc">Our AI analyzes thousands of herbal medicine traditions and creates a personalized remedy plan specifically for your body and needs.</p>
+      <div class="step-title">Get your protocol</div>
+      <p class="step-desc">Your personalized natural remedy plan is ready instantly. Herbs, dosages, timing, lifestyle tips — everything mapped to your specific situation.</p>
     </div>
     <div>
       <div class="step-num">03</div>
       <span class="step-icon">🌱</span>
-      <div class="step-title">Heal naturally</div>
-      <p class="step-desc">Follow your custom protocol, track your progress, and update your plan as you improve. Your AI companion evolves with your health journey.</p>
-    </div>
-  </div>
-</section>
-
-<!-- AI DEMO SECTION -->
-<section class="ai-section">
-  <div>
-    <div class="section-label">Live AI Demo</div>
-    <h2 class="section-title">Ask anything.<br><em>Get real answers.</em></h2>
-    <p class="section-sub" style="margin-bottom:32px">Our AI is trained on thousands of natural remedy protocols. Try asking about any symptom, herb, or health concern.</p>
-    <a href="#" class="btn-primary" onclick="openModal(); return false;">Get Full Access — $5.99/mo</a>
-  </div>
-  <div class="chat-demo">
-    <div class="chat-header">
-      <div class="chat-avatar">🌿</div>
-      <div>
-        <div class="chat-name">Remedy AI</div>
-        <div class="chat-status"><span class="online-dot"></span>Online — Always available</div>
-      </div>
-    </div>
-    <div class="chat-body" id="chatBody">
-      <div class="chat-msg ai">
-        <div class="bubble">Hello! I'm your personal natural remedy consultant. What health concern can I help you with today? 🌿</div>
-      </div>
-    </div>
-    <div class="chat-input-area">
-      <input type="text" class="chat-input" id="chatInput" placeholder="Ask about any symptom or remedy..." onkeypress="if(event.key==='Enter') sendChat()">
-      <button class="chat-send" onclick="sendChat()">→</button>
+      <div class="step-title">Heal and track</div>
+      <p class="step-desc">Follow your protocol, check in daily, and watch your progress. Your AI consultant evolves your plan as you improve. Ask questions anytime.</p>
     </div>
   </div>
 </section>
 
 <!-- PRICING -->
-<section class="pricing-section" id="pricing">
+<section class="pricing" id="pricing">
   <div class="section-label">Simple Pricing</div>
-  <h2 class="section-title">Less than a cup of coffee.<br><em>Better than any wellness app.</em></h2>
+  <h2 class="section-title">No hidden fees.<br><em>No surprises. Ever.</em></h2>
+  <p class="section-sub" style="margin:0 auto;">Choose monthly for flexibility or annual to save 33%. Both include everything.</p>
 
-  <div class="pricing-card">
-    <div class="pricing-badge">✦ All-Access Membership</div>
-    <div class="pricing-price"><sup>$</sup>5<sub>.99/mo</sub></div>
-    <p class="pricing-tagline">Everything. Unlimited. Cancel anytime.</p>
-    <ul class="pricing-features">
-      <li>Unlimited AI Remedy Consultations</li>
-      <li>Personalized Monthly Wellness Plans</li>
-      <li>Full Remedy Vault Access (500+ protocols)</li>
-      <li>Supplement & Herb Planner</li>
-      <li>Weekly New Content & Seasonal Protocols</li>
-      <li>Symptom Tracker & Health Journal</li>
-      <li>Priority Email Support</li>
-    </ul>
-    <button class="btn-gold" onclick="openModal()">Start Your 7-Day Free Trial</button>
-    <p class="pricing-guarantee">No credit card required for trial · Cancel anytime · No hidden fees</p>
+  <div class="pricing-toggle">
+    <button class="ptog-btn active" id="togMonthly" onclick="setPricing('monthly')">Monthly</button>
+    <button class="ptog-btn" id="togAnnual" onclick="setPricing('annual')">Annual <span class="save-badge">Save 33%</span></button>
+  </div>
+
+  <div class="pricing-cards">
+    <!-- MONTHLY -->
+    <div class="price-card" id="monthlyCard">
+      <div class="price-tag">Monthly Plan</div>
+      <div class="price-name">Full Access</div>
+      <div class="price-amount">
+        <span class="price-big">$5</span>
+        <span style="font-family:'Playfair Display',serif;font-size:28px;color:var(--bark);">.99</span>
+        <span class="price-period">/month</span>
+      </div>
+      <div class="price-equiv">Less than $1.50 per week</div>
+      <ul class="price-features">
+        <li>Unlimited AI Remedy Consultations</li>
+        <li>Personalized Monthly Wellness Plan</li>
+        <li>Full Remedy Vault (500+ protocols)</li>
+        <li>Supplement & Herb Planner</li>
+        <li>Daily Check-In & Streak Tracker</li>
+        <li>Weekly New Content</li>
+        <li>Cancel anytime</li>
+      </ul>
+      <button class="price-btn price-btn-outline" onclick="openSignup('monthly')">Start 7-Day Free Trial</button>
+    </div>
+
+    <!-- ANNUAL -->
+    <div class="price-card featured" id="annualCard" style="display:none;">
+      <div class="popular-badge">✦ Most Popular</div>
+      <div class="price-tag">Annual Plan</div>
+      <div class="price-name" style="color:var(--cream);">Full Access</div>
+      <div class="price-amount">
+        <span class="price-big">$47</span>
+        <span style="font-family:'Playfair Display',serif;font-size:28px;color:var(--cream);">.99</span>
+        <span class="price-period">/year</span>
+      </div>
+      <div class="price-equiv">Just $4/month — save $23.89</div>
+      <ul class="price-features">
+        <li>Everything in Monthly, plus:</li>
+        <li>Priority AI responses</li>
+        <li>Exclusive annual member protocols</li>
+        <li>Early access to new features</li>
+        <li>Personalized yearly wellness review</li>
+        <li>Locked-in rate — price never increases</li>
+        <li>Cancel anytime, prorated refund</li>
+      </ul>
+      <button class="price-btn price-btn-gold" onclick="openSignup('annual')">Start 7-Day Free Trial</button>
+    </div>
+  </div>
+  <p class="guarantee">✦ 7-day free trial on both plans · Card required · Cancel anytime before trial ends and you won't be charged</p>
+</section>
+
+<!-- REFERRAL -->
+<section class="referral" id="referral">
+  <div class="section-label">Share the Healing</div>
+  <h2 class="section-title">Give a month.<br><em>Get a month.</em></h2>
+  <p class="section-sub" style="margin:0 auto;">Share Root of Remedy with a friend and you both get a free month. No limits on how many friends you refer.</p>
+  <div class="referral-card">
+    <div class="referral-steps">
+      <div class="ref-step">
+        <div class="ref-num">1</div>
+        <div class="ref-title">Share your link</div>
+        <div class="ref-desc">Every member gets a unique referral link in their dashboard</div>
+      </div>
+      <div class="ref-step">
+        <div class="ref-num">2</div>
+        <div class="ref-title">Friend signs up</div>
+        <div class="ref-desc">They start their free trial using your link</div>
+      </div>
+      <div class="ref-step">
+        <div class="ref-num">3</div>
+        <div class="ref-title">You both win</div>
+        <div class="ref-desc">You get a free month. They get a free month. Everyone heals.</div>
+      </div>
+    </div>
+    <button class="ref-cta" onclick="openSignup()">Join & Start Referring</button>
   </div>
 </section>
 
@@ -989,55 +491,52 @@
 <section class="testimonials">
   <div class="section-label">Member Stories</div>
   <h2 class="section-title">Real people.<br><em>Real results.</em></h2>
-
-  <div class="testimonials-grid">
-    <div class="testimonial-card">
+  <div class="testi-grid">
+    <div class="testi">
       <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"I've spent hundreds on wellness apps. Root of Remedy does more for $5.99 than anything else I've tried. The AI actually understands what I'm dealing with."</p>
-      <div class="testimonial-author">Jasmine T.</div>
-      <div class="testimonial-location">Atlanta, GA</div>
+      <p class="testi-text">"I've spent hundreds on wellness apps. Root of Remedy does more for $5.99 than anything else I've tried. The AI actually understands what I'm dealing with."</p>
+      <div class="testi-author">Jasmine T.</div>
+      <div class="testi-loc">Atlanta, GA</div>
     </div>
-    <div class="testimonial-card">
+    <div class="testi">
       <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"My chronic inflammation has improved so much following my personalized protocol. I can't believe this is only $5.99. I'd pay ten times that."</p>
-      <div class="testimonial-author">Marcus R.</div>
-      <div class="testimonial-location">Houston, TX</div>
+      <p class="testi-text">"My chronic inflammation has improved so much following my personalized protocol. I can't believe this is only $5.99. I'd pay ten times that honestly."</p>
+      <div class="testi-author">Marcus R.</div>
+      <div class="testi-loc">Houston, TX</div>
     </div>
-    <div class="testimonial-card">
+    <div class="testi">
       <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"As a holistic health practitioner I recommend this to all my clients. The remedy vault alone is worth the subscription. Incredibly comprehensive."</p>
-      <div class="testimonial-author">Dr. Keisha M.</div>
-      <div class="testimonial-location">Chicago, IL</div>
+      <p class="testi-text">"As a holistic health practitioner I recommend this to all my clients. The remedy vault alone is worth the subscription. Incredibly comprehensive."</p>
+      <div class="testi-author">Dr. Keisha M.</div>
+      <div class="testi-loc">Chicago, IL</div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-top">
+  <div class="footer-grid">
     <div>
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
-        <img src="/logo-dark.jpg" alt="Root of Remedy" style="height:48px;width:48px;border-radius:10px;object-fit:cover;">
-        <div class="footer-logo" style="margin:0;">Root of <span>Remedy</span></div>
-      </div>
+      <div class="footer-logo">Root of <span>Remedy</span></div>
       <p class="footer-tagline">AI-powered natural wellness for everyone. Because good health shouldn't cost a fortune.</p>
     </div>
     <div class="footer-col">
       <h4>Product</h4>
       <ul>
-        <li><a href="/dashboard">AI Consultant</a></li>
-        <li><a href="/dashboard">Wellness Plans</a></li>
-        <li><a href="/dashboard">Remedy Vault</a></li>
-        <li><a href="/dashboard">Herb Planner</a></li>
+        <li><a href="#">AI Consultant</a></li>
+        <li><a href="#">Wellness Plans</a></li>
+        <li><a href="#">Remedy Vault</a></li>
+        <li><a href="#">Herb Planner</a></li>
+        <li><a href="#">Referral Program</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Company</h4>
       <ul>
-        <li><a href="#features">About</a></li>
+        <li><a href="#">About</a></li>
         <li><a href="#">Blog</a></li>
-        <li><a href="https://pinterest.com/rootofremedy" target="_blank">Pinterest</a></li>
-        <li><a href="mailto:support@rootofremedy.com">Contact</a></li>
+        <li><a href="#">Pinterest</a></li>
+        <li><a href="#">Contact</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1045,145 +544,255 @@
       <ul>
         <li><a href="/privacy.html">Privacy Policy</a></li>
         <li><a href="/terms.html">Terms of Service</a></li>
-        <li><a href="/privacy.html#disclaimer">Disclaimer</a></li>
-        <li><a href="/terms.html#refund">Refund Policy</a></li>
+        <li><a href="#">Medical Disclaimer</a></li>
+        <li><a href="#">Refund Policy</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <span>© 2026 Root of Remedy · rootofremedy.com</span>
-    <span>*Not a substitute for professional medical advice.</span>
+    <span>Not a substitute for professional medical advice.</span>
   </div>
 </footer>
 
 <!-- SIGNUP MODAL -->
-<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+<div class="modal-bg" id="signupModal" onclick="if(event.target===this)closeSignup()">
   <div class="modal">
-    <button class="modal-close" onclick="closeModal()">×</button>
-    <div id="formState">
+    <button class="modal-close" onclick="closeSignup()">×</button>
+    <div id="signupForm">
       <h2 class="modal-title">Start healing naturally.</h2>
-      <p class="modal-sub">7-day free trial. Then just $5.99/month. Cancel anytime.</p>
-      <div class="form-group">
-        <label class="form-label">Full Name</label>
-        <input type="text" class="form-input" placeholder="Your name" id="formName">
+      <p class="modal-sub">7-day free trial. Card required. Cancel anytime before trial ends and you won't be charged a thing.</p>
+      <div class="plan-select">
+        <div class="plan-opt selected" id="planMonthly" onclick="selectPlan('monthly')">
+          <div class="plan-opt-name">Monthly</div>
+          <div class="plan-opt-price">$5.99</div>
+          <div class="plan-opt-note">per month</div>
+        </div>
+        <div class="plan-opt" id="planAnnual" onclick="selectPlan('annual')">
+          <div class="plan-opt-name">Annual</div>
+          <div class="plan-opt-price">$47.99</div>
+          <div class="plan-opt-note">Save 33% · $4/mo</div>
+        </div>
       </div>
-      <div class="form-group">
-        <label class="form-label">Email Address</label>
-        <input type="email" class="form-input" placeholder="you@email.com" id="formEmail">
+      <div class="form-group"><label class="form-label">Full Name</label><input type="text" class="form-input" id="signupName" placeholder="Your name"></div>
+      <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" id="signupEmail" placeholder="you@email.com"></div>
+      <div class="form-group"><label class="form-label">Password</label><input type="password" class="form-input" id="signupPass" placeholder="Create a password"></div>
+      <div class="form-group"><label class="form-label">Card Number</label><input type="text" class="form-input" placeholder="•••• •••• •••• ••••" maxlength="19" oninput="formatCard(this)"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div class="form-group"><label class="form-label">Expiry</label><input type="text" class="form-input" placeholder="MM/YY" maxlength="5"></div>
+        <div class="form-group"><label class="form-label">CVV</label><input type="text" class="form-input" placeholder="•••" maxlength="3"></div>
       </div>
-      <div class="form-group">
-        <label class="form-label">Password</label>
-        <input type="password" class="form-input" placeholder="Create a password" id="formPass">
-      </div>
-      <button class="form-submit" onclick="submitForm()">Start Free Trial →</button>
-      <p class="form-terms">By signing up you agree to our Terms of Service and Privacy Policy. No credit card required for trial.</p>
+      <button class="form-submit" onclick="submitSignup()">Start My Free Trial →</button>
+      <p class="form-terms">By signing up you agree to our Terms of Service. Your trial is free for 7 days then auto-renews. Cancel anytime.</p>
     </div>
-    <div class="success-state" id="successState">
+    <div class="success-state" id="signupSuccess">
       <div class="success-icon">🌿</div>
       <h3 class="success-title">Welcome to Root of Remedy!</h3>
-      <p class="success-sub">Check your email to confirm your account and start your 7-day free trial. Your wellness journey starts now.</p>
+      <p class="success-sub">Check your email to confirm your account and access your personalized wellness plan. Your healing journey starts now.</p>
     </div>
   </div>
 </div>
 
 <script>
-  // MODAL — redirects to Stripe checkout
-  function openModal() {
-    startCheckout();
+// QUIZ STATE
+let answers = {};
+let currentStep = 0;
+const totalSteps = 5;
+
+function selectOpt(btn, key, val) {
+  btn.closest('.quiz-options').querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  answers[key] = val;
+  const nextBtn = document.getElementById('next' + currentStep);
+  if(nextBtn) nextBtn.disabled = false;
+}
+
+function nextStep() {
+  document.getElementById('step' + currentStep).classList.remove('active');
+  currentStep++;
+  document.getElementById('dot' + currentStep).classList.add('done');
+  const next = document.getElementById('step' + currentStep);
+  if(next) { next.classList.add('active'); next.style.animation='fadeUp 0.3s ease both'; }
+}
+
+function checkEmailStep() {
+  const name = document.getElementById('quizName').value.trim();
+  const email = document.getElementById('quizEmail').value.trim();
+  document.getElementById('next4').disabled = !(name && email.includes('@'));
+}
+
+const protocolMap = {
+  sleep: { title: 'Deep Sleep Recovery Protocol', sub: 'Targeting cortisol, magnesium deficiency & nervous system calm',
+    items: [
+      { icon:'🌿', name:'Ashwagandha KSM-66', detail:'300mg nightly · lowers cortisol for deeper sleep' },
+      { icon:'💊', name:'Magnesium Glycinate', detail:'400mg before bed · muscle relaxation & melatonin production' },
+      { icon:'🫖', name:'Valerian + Passionflower Tea', detail:'1 cup 45 min before bed · clinically studied for sleep onset' },
+      { icon:'📋', name:'Your Full Sleep Plan', detail:'7 more protocols, lifestyle adjustments & tracker', locked:true }
+    ]
+  },
+  stress: { title: 'Stress & Anxiety Relief Protocol', sub: 'Adaptogenic herbs to balance cortisol and calm the nervous system',
+    items: [
+      { icon:'🌿', name:'Ashwagandha', detail:'600mg daily · proven 28% cortisol reduction in studies' },
+      { icon:'🍃', name:'Holy Basil (Tulsi)', detail:'500mg or tea · balances stress hormones naturally' },
+      { icon:'💊', name:'L-Theanine', detail:'200mg · calm focus without drowsiness' },
+      { icon:'📋', name:'Your Full Stress Plan', detail:'8 more protocols, breathing exercises & journal', locked:true }
+    ]
+  },
+  inflammation: { title: 'Anti-Inflammation Reset Protocol', sub: 'Targeting root causes of systemic inflammation',
+    items: [
+      { icon:'🌿', name:'Turmeric + Black Pepper', detail:'500mg curcumin · black pepper increases absorption 2000%' },
+      { icon:'🫚', name:'Omega-3 Fish Oil', detail:'2000mg EPA/DHA daily · potent anti-inflammatory' },
+      { icon:'🌱', name:'Boswellia Extract', detail:'300mg · reduces inflammatory markers significantly' },
+      { icon:'📋', name:'Your Full Protocol', detail:'Anti-inflammatory diet plan, 6 more herbs & tracker', locked:true }
+    ]
+  },
+  gut: { title: 'Gut Health Restoration Protocol', sub: 'Rebuilding your microbiome and healing the gut lining',
+    items: [
+      { icon:'🦠', name:'Multi-Strain Probiotic', detail:'50B CFU · Lactobacillus & Bifidobacterium blend' },
+      { icon:'🌿', name:'Slippery Elm Bark', detail:'1 tsp in water before meals · heals gut lining' },
+      { icon:'🫖', name:'Ginger Digestive Tonic', detail:'Fresh ginger tea before meals · stimulates enzymes' },
+      { icon:'📋', name:'Your Full Gut Plan', detail:'5-day gut reset, elimination guide & meal plan', locked:true }
+    ]
+  },
+  immunity: { title: 'Immune System Boost Protocol', sub: 'Strengthening your natural defenses year-round',
+    items: [
+      { icon:'🛡️', name:'Elderberry + Zinc Stack', detail:'Elderberry 600mg + Zinc 15mg · proven immune support' },
+      { icon:'☀️', name:'Vitamin D3 + K2', detail:'5000 IU D3 · 80% of Americans are deficient' },
+      { icon:'🌿', name:'Astragalus Root', detail:'500mg daily · long-term immune tonic from TCM' },
+      { icon:'📋', name:'Your Full Immunity Plan', detail:'Seasonal protocols, 6 more herbs & prevention guide', locked:true }
+    ]
+  },
+  skin: { title: 'Skin & Glow Protocol', sub: 'Healing skin from the inside out naturally',
+    items: [
+      { icon:'✨', name:'Collagen Support Stack', detail:'Vitamin C 1000mg + Silica + Zinc · collagen synthesis trio' },
+      { icon:'🌿', name:'Spearmint Tea', detail:'2 cups daily · reduces hormonal acne in clinical studies' },
+      { icon:'🌸', name:'Evening Primrose Oil', detail:'1000mg · balances hormones, reduces skin inflammation' },
+      { icon:'📋', name:'Your Full Skin Plan', detail:'Inside-out routine, 7 more protocols & tracking', locked:true }
+    ]
   }
+};
 
-  function closeModal() {
-    document.getElementById('modalOverlay').classList.remove('active');
-    document.body.style.overflow = '';
-  }
+async function showResults() {
+  const name = document.getElementById('quizName').value.trim() || 'Friend';
+  if(!name) { alert('Please enter your first name.'); return; }
 
-  async function startCheckout() {
-    const btn = event?.target;
-    if (btn) btn.textContent = 'Redirecting...';
-    try {
-      const res = await fetch('/api/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' } });
-      const data = await res.json();
-      if (data.url) { window.location.href = data.url; }
-      else { alert('Something went wrong. Please try again.'); if (btn) btn.textContent = 'Start Free Trial →'; }
-    } catch (e) {
-      alert('Connection error. Please try again.');
-      if (btn) btn.textContent = 'Start Free Trial →';
-    }
-  }
+  // Advance to results step
+  document.getElementById('step4').classList.remove('active');
+  document.getElementById('stepResults').classList.add('active');
+  updateProgress(5);
+  document.getElementById('resultsTitle').textContent = 'Building your plan...';
+  document.getElementById('resultsSub').textContent = 'Our AI is personalizing your protocol';
+  document.getElementById('resultsItems').innerHTML = '<div style="text-align:center;padding:24px;color:var(--sage);">🌿 Analyzing your answers...</div>';
 
-  // Wire all CTA buttons to checkout (exclude anchor links)
-  document.querySelectorAll('.btn-primary, .btn-gold').forEach(el => {
-    if (!el.getAttribute('onclick')) {
-      el.addEventListener('click', e => { e.preventDefault(); startCheckout(); });
-    }
-  });
+  const prompt = `You are a natural wellness AI. A user just completed a wellness quiz. Build them a personalized natural remedy protocol. Return ONLY a JSON object with: {"title": "Protocol Name", "subtitle": "Short tagline", "items": [{"icon": "emoji", "name": "remedy name", "detail": "how to use + why it helps"}]} — exactly 3 items, keep it specific and actionable. Quiz answers: Main concern: ${answers.concern || 'general wellness'}, Duration: ${answers.duration || 'unknown'}, Experience: ${answers.experience || 'beginner'}, Goal: ${answers.goal || 'feel better'}.`;
 
-  // AI CHAT DEMO — routes through our secure proxy
-  const fallbacks = [
-    "Based on your question, I'd suggest starting with **Ashwagandha** (300-500mg daily) combined with **Magnesium Glycinate** at night — these work synergistically. 🌿 Get your personalized protocol → rootofremedy.com ($5.99/mo, 7-day free trial)",
-    "Traditional herbal medicine points to **Turmeric with black pepper** paired with anti-inflammatory lifestyle adjustments. Many people see improvement within 2-3 weeks. 🌿 Get your personalized protocol → rootofremedy.com ($5.99/mo, 7-day free trial)",
-    "A combination of adaptogenic herbs, targeted nutrition, and simple daily rituals can make a real difference here. 🌿 Get your personalized protocol → rootofremedy.com ($5.99/mo, 7-day free trial)",
-  ];
-
-  let chatHistory = [];
-
-  async function sendChat() {
-    const input = document.getElementById('chatInput');
-    const body = document.getElementById('chatBody');
-    const message = input.value.trim();
-    if (!message) return;
-
-    const userDiv = document.createElement('div');
-    userDiv.className = 'chat-msg user';
-    userDiv.innerHTML = `<div class="bubble">${message}</div>`;
-    body.appendChild(userDiv);
-    input.value = '';
-    body.scrollTop = body.scrollHeight;
-
-    const typingDiv = document.createElement('div');
-    typingDiv.className = 'chat-msg ai';
-    typingDiv.innerHTML = `<div class="bubble typing"><span></span><span></span><span></span></div>`;
-    body.appendChild(typingDiv);
-    body.scrollTop = body.scrollHeight;
-
-    chatHistory.push({ role: 'user', content: message });
-
-    try {
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: chatHistory, is_demo: true }),
-      });
-      const data = await res.json();
-      const aiText = data.text || fallbacks[Math.floor(Math.random() * fallbacks.length)];
-      chatHistory.push({ role: 'assistant', content: aiText });
-      typingDiv.remove();
-      const aiDiv = document.createElement('div');
-      aiDiv.className = 'chat-msg ai';
-      aiDiv.innerHTML = `<div class="bubble">${aiText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</div>`;
-      body.appendChild(aiDiv);
-    } catch (e) {
-      typingDiv.remove();
-      const fallback = fallbacks[Math.floor(Math.random() * fallbacks.length)];
-      chatHistory.push({ role: 'assistant', content: fallback });
-      const aiDiv = document.createElement('div');
-      aiDiv.className = 'chat-msg ai';
-      aiDiv.innerHTML = `<div class="bubble">${fallback}</div>`;
-      body.appendChild(aiDiv);
-    }
-    body.scrollTop = body.scrollHeight;
-  }
-
-  // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ messages: [{role: 'user', content: prompt}], is_demo: true })
     });
-  });
+    const data = await res.json();
+    let protocol;
+    try {
+      const raw = data.text || '';
+      const jsonMatch = raw.match(/\{[\s\S]*\}/);
+      protocol = jsonMatch ? JSON.parse(jsonMatch[0]) : null;
+    } catch(e) { protocol = null; }
 
-  // Member login link
-  const loginLink = document.querySelector('.footer-col a[href="#"]');
+    if(protocol) {
+      document.getElementById('resultsTitle').textContent = protocol.title || `${name}'s Wellness Protocol`;
+      document.getElementById('resultsSub').textContent = protocol.subtitle || 'Personalized for your answers';
+      document.getElementById('resultsItems').innerHTML = (protocol.items || []).map((item, i) =>
+        `<div class="result-item ${i > 0 ? 'locked' : ''}">
+          <span class="ri-icon">${item.icon || '🌿'}</span>
+          <div class="ri-info"><div class="ri-name">${item.name}</div><div class="ri-detail">${i === 0 ? item.detail : '🔒 Unlock with free trial'}</div></div>
+        </div>`
+      ).join('');
+    } else {
+      setFallbackResults(name);
+    }
+  } catch(e) {
+    setFallbackResults(name);
+  }
+}
+
+function setFallbackResults(name) {
+  const concern = answers.concern || 'sleep';
+  const protocols = {
+    sleep: {title: `${name}'s Sleep Protocol`, subtitle: 'Natural deep sleep support', items: [{icon:'💧',name:'Magnesium Glycinate',detail:'400mg before bed — relaxes muscles and quiets the nervous system'},{icon:'🌿',name:'Valerian Root',detail:'🔒 Unlock with free trial'},{icon:'🫖',name:'Passionflower Tea',detail:'🔒 Unlock with free trial'}]},
+    stress: {title: `${name}'s Stress Protocol`, subtitle: 'Adaptogen-powered calm', items: [{icon:'🌿',name:'Ashwagandha',detail:'300mg KSM-66 at night — may lower cortisol by 28%'},{icon:'🫖',name:'L-Theanine',detail:'🔒 Unlock with free trial'},{icon:'💧',name:'Magnesium',detail:'🔒 Unlock with free trial'}]},
+    inflammation: {title: `${name}'s Anti-Inflammation Plan`, subtitle: 'Root cause support', items: [{icon:'🌿',name:'Turmeric + Black Pepper',detail:'500mg with food — absorption boosted 2000% by pepper'},{icon:'💧',name:'Ginger Root',detail:'🔒 Unlock with free trial'},{icon:'🌿',name:'Boswellia',detail:'🔒 Unlock with free trial'}]},
+  };
+  const p = protocols[concern] || protocols.sleep;
+  document.getElementById('resultsTitle').textContent = p.title;
+  document.getElementById('resultsSub').textContent = p.subtitle;
+  document.getElementById('resultsItems').innerHTML = p.items.map(item =>
+    `<div class="result-item"><span class="ri-icon">${item.icon}</span><div class="ri-info"><div class="ri-name">${item.name}</div><div class="ri-detail">${item.detail}</div></div></div>`
+  ).join('');
+}
+
+// PRICING TOGGLE
+let selectedPlan = 'monthly';
+
+function setPricing(type) {
+  selectedPlan = type;
+  document.getElementById('togMonthly').classList.toggle('active', type==='monthly');
+  document.getElementById('togAnnual').classList.toggle('active', type==='annual');
+  document.getElementById('monthlyCard').style.display = type==='monthly' ? 'block' : 'none';
+  document.getElementById('annualCard').style.display = type==='annual' ? 'block' : 'none';
+}
+
+// SIGNUP MODAL
+function openSignup(plan) {
+  if(plan) { selectedPlan = plan; selectPlan(plan); }
+  document.getElementById('signupModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSignup() {
+  document.getElementById('signupModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function selectPlan(plan) {
+  selectedPlan = plan;
+  document.getElementById('planMonthly').classList.toggle('selected', plan==='monthly');
+  document.getElementById('planAnnual').classList.toggle('selected', plan==='annual');
+}
+
+async function submitSignup() {
+  const name = document.getElementById('signupName').value.trim();
+  const email = document.getElementById('signupEmail').value.trim();
+  if(!name || !email) { alert('Please fill in your name and email.'); return; }
+  const btn = document.querySelector('.form-submit');
+  if(btn) btn.textContent = 'Redirecting to checkout...';
+  try {
+    const res = await fetch('/api/checkout', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ plan: selectedPlan || 'monthly' })
+    });
+    const data = await res.json();
+    if(data.url) { window.location.href = data.url; }
+    else { alert('Something went wrong. Please try again.'); if(btn) btn.textContent = 'Start My Free Trial →'; }
+  } catch(e) {
+    alert('Connection error. Please try again.');
+    if(btn) btn.textContent = 'Start My Free Trial →';
+  }
+}
+
+function formatCard(input) {
+  let val = input.value.replace(/\D/g,'').substring(0,16);
+  input.value = val.replace(/(.{4})/g,'$1 ').trim();
+}
+
+// DATE
+document.addEventListener('DOMContentLoaded', () => {
+  const now = new Date();
+  const dateEl = document.getElementById('currentDate');
+  if(dateEl) dateEl.textContent = now.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+});
 </script>
 </body>
 </html>

@@ -1,18 +1,23 @@
 // POST /api/checkout — creates Stripe checkout session
+// Body: { plan: 'monthly' | 'annual' }
 const Stripe = require('stripe');
 
 module.exports = async (req, res) => {
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
-  }
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
+  if (req.method === 'OPTIONS') { res.status(200).end(); return; }
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-  const priceId = process.env.STRIPE_PRICE_ID; // price_1TYDI8JGf3rNi1CHZBacD6EY
   const origin = process.env.SITE_URL || 'https://rootofremedy.com';
+
+  let body = req.body || {};
+  if (typeof body === 'string') {
+    try { body = JSON.parse(body); } catch { body = {}; }
+  }
+
+  const plan = body.plan === 'annual' ? 'annual' : 'monthly';
+  const priceId = plan === 'annual'
+    ? process.env.STRIPE_ANNUAL_PRICE_ID
+    : process.env.STRIPE_PRICE_ID;
 
   try {
     const session = await stripe.checkout.sessions.create({
