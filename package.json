@@ -1,0 +1,9 @@
+{
+  "name": "rootofremedy",
+  "version": "1.0.0",
+  "description": "Root of Remedy — AI Natural Wellness Platform",
+  "private": true,
+  "dependencies": {
+    "stripe": "^14.0.0"
+  }
+}

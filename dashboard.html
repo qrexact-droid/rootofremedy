@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Root of Remedy — My Wellness Dashboard</title>
+<style>
+  #authGate {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(44,26,14,0.85);
+    backdrop-filter: blur(12px);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Sans', sans-serif;
+  }
+  #authGate.active { display: flex; }
+  #authGateCard {
+    background: #FDFAF5;
+    border-radius: 28px;
+    padding: 48px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+  }
+  #authGateCard h2 { font-family: 'Playfair Display', serif; font-size: 28px; color: #2C1A0E; margin-bottom: 12px; }
+  #authGateCard p { font-size: 15px; color: rgba(44,26,14,0.6); margin-bottom: 28px; line-height: 1.6; }
+  #authGateCard .gate-btn {
+    display: block; width: 100%; background: #3D5A3E; color: white;
+    padding: 14px; border-radius: 100px; font-size: 16px; font-weight: 500;
+    border: none; cursor: pointer; margin-bottom: 12px;
+    font-family: 'DM Sans', sans-serif; text-decoration: none;
+  }
+  #authGateCard .gate-link {
+    font-size: 13px; color: rgba(44,26,14,0.5); display: block;
+  }
+  #authGateCard .gate-link a { color: #3D5A3E; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --bark: #2C1A0E;
+    --moss: #3D5A3E;
+    --sage: #7A9E7E;
+    --gold: #C4933F;
+    --rust: #8B4513;
+    --light-sage: #EAF0E8;
+    --white: #FDFAF5;
+    --sidebar: #1E2D1F;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #F0EBE1;
+    color: var(--bark);
+    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    width: 260px;
+    background: var(--sidebar);
+    min-height: 100vh;
+    padding: 32px 0;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    z-index: 50;
+  }
+
+  .sidebar-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--cream);
+    padding: 0 28px 32px;
+    border-bottom: 1px solid rgba(245,240,232,0.08);
+  }
+
+  .sidebar-logo span { color: var(--sage); }
+
+  .sidebar-section {
+    padding: 24px 28px 8px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(245,240,232,0.3);
+    font-weight: 500;
+  }
+
+  .sidebar-nav { padding: 8px 16px; flex: 1; }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 16px;
+    border-radius: 12px;
+    color: rgba(245,240,232,0.55);
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 2px;
+    text-decoration: none;
+  }
+
+  .nav-item:hover {
+    background: rgba(245,240,232,0.06);
+    color: var(--cream);
+  }
+
+  .nav-item.active {
+    background: var(--moss);
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  .nav-icon { font-size: 16px; width: 20px; text-align: center; }
+
+  .sidebar-user {
+    padding: 20px 24px;
+    border-top: 1px solid rgba(245,240,232,0.08);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .user-avatar {
+    width: 38px; height: 38px;
+    background: var(--moss);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: white;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .user-name { font-size: 13px; color: var(--cream); font-weight: 500; }
+  .user-plan { font-size: 11px; color: var(--sage); }
+
+  /* MAIN */
+  .main {
+    margin-left: 260px;
+    flex: 1;
+    padding: 40px 48px;
+    min-height: 100vh;
+  }
+
+  /* TOPBAR */
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+
+  .topbar-greeting {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    letter-spacing: -0.5px;
+  }
+
+  .topbar-greeting span { color: var(--moss); font-style: italic; }
+
+  .topbar-date {
+    font-size: 13px;
+    color: rgba(44,26,14,0.45);
+    margin-top: 4px;
+  }
+
+  .topbar-actions { display: flex; gap: 12px; align-items: center; }
+
+  .streak-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
+    border: 1px solid rgba(44,26,14,0.1);
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .streak-badge .fire { font-size: 16px; }
+
+  .notif-btn {
+    width: 40px; height: 40px;
+    background: var(--white);
+    border: 1px solid rgba(44,26,14,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.2s;
+  }
+
+  .notif-btn:hover { background: var(--light-sage); }
+
+  /* STATS ROW */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .stat-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 24px;
+    border: 1px solid rgba(44,26,14,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(44,26,14,0.08);
+  }
+
+  .stat-icon { font-size: 24px; margin-bottom: 12px; display: block; }
+  .stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label { font-size: 13px; color: rgba(44,26,14,0.5); font-weight: 300; }
+  .stat-change { font-size: 12px; color: var(--moss); font-weight: 500; margin-top: 8px; }
+
+  /* MAIN GRID */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 24px;
+  }
+
+  .card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 28px;
+    border: 1px solid rgba(44,26,14,0.06);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+  }
+
+  .card-action {
+    font-size: 13px;
+    color: var(--moss);
+    cursor: pointer;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  /* AI CHAT */
+  .ai-chat-card {
+    display: flex;
+    flex-direction: column;
+    height: 520px;
+  }
+
+  .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 4px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(44,26,14,0.1) transparent;
+  }
+
+  .chat-msg {
+    margin-bottom: 16px;
+    animation: fadeUp 0.3s ease both;
+  }
+
+  .chat-msg.user { text-align: right; }
+
+  .chat-msg .bubble {
+    display: inline-block;
+    padding: 12px 16px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 82%;
+    text-align: left;
+  }
+
+  .chat-msg.user .bubble {
+    background: var(--moss);
+    color: white;
+    border-bottom-right-radius: 4px;
+  }
+
+  .chat-msg.ai .bubble {
+    background: var(--light-sage);
+    color: var(--bark);
+    border-bottom-left-radius: 4px;
+  }
+
+  .msg-time {
+    font-size: 11px;
+    color: rgba(44,26,14,0.3);
+    margin-top: 4px;
+    padding: 0 4px;
+  }
+
+  .chat-input-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(44,26,14,0.06);
+    align-items: center;
+  }
+
+  .chat-field {
+    flex: 1;
+    background: #F0EBE1;
+    border: 1.5px solid rgba(44,26,14,0.1);
+    border-radius: 100px;
+    padding: 11px 18px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--bark);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .chat-field:focus { border-color: var(--moss); }
+
+  .chat-send-btn {
+    background: var(--moss);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px; height: 40px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .chat-send-btn:hover { background: var(--bark); transform: scale(1.05); }
+
+  /* RIGHT COLUMN */
+  .right-col { display: flex; flex-direction: column; gap: 24px; }
+
+  /* WELLNESS PLAN */
+  .plan-header {
+    background: linear-gradient(135deg, var(--moss), #2a4a2b);
+    border-radius: 16px;
+    padding: 20px;
+    color: white;
+    margin-bottom: 20px;
+  }
+
+  .plan-label { font-size: 11px; opacity: 0.6; text-transform: uppercase; letter-spacing: 1.5px; }
+  .plan-name { font-family: 'Playfair Display', serif; font-size: 20px; margin: 4px 0 8px; }
+  .plan-progress-bar {
+    background: rgba(255,255,255,0.2);
+    border-radius: 100px;
+    height: 6px;
+    margin-top: 12px;
+  }
+  .plan-progress-fill {
+    background: var(--gold);
+    height: 6px;
+    border-radius: 100px;
+    width: 65%;
+    transition: width 1s ease;
+  }
+  .plan-progress-text { font-size: 12px; opacity: 0.7; margin-top: 6px; }
+
+  /* DAILY PROTOCOL */
+  .protocol-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(44,26,14,0.06);
+    cursor: pointer;
+  }
+
+  .protocol-item:last-child { border-bottom: none; }
+
+  .protocol-check {
+    width: 24px; height: 24px;
+    border: 2px solid rgba(44,26,14,0.15);
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .protocol-check.done {
+    background: var(--moss);
+    border-color: var(--moss);
+    color: white;
+    font-size: 12px;
+  }
+
+  .protocol-info { flex: 1; }
+  .protocol-name { font-size: 14px; font-weight: 500; }
+  .protocol-detail { font-size: 12px; color: rgba(44,26,14,0.45); margin-top: 2px; }
+  .protocol-time { font-size: 12px; color: var(--gold); font-weight: 500; }
+
+  /* REMEDY VAULT */
+  .vault-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .vault-item {
+    background: var(--light-sage);
+    border-radius: 14px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+
+  .vault-item:hover {
+    border-color: var(--sage);
+    transform: translateY(-2px);
+  }
+
+  .vault-emoji { font-size: 24px; margin-bottom: 8px; display: block; }
+  .vault-title { font-size: 13px; font-weight: 500; line-height: 1.3; }
+  .vault-count { font-size: 11px; color: var(--sage); margin-top: 4px; }
+
+  /* HERB TRACKER */
+  .herb-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(44,26,14,0.06);
+  }
+
+  .herb-row:last-child { border-bottom: none; }
+
+  .herb-info { display: flex; align-items: center; gap: 10px; }
+  .herb-icon { font-size: 20px; }
+  .herb-name { font-size: 14px; font-weight: 500; }
+  .herb-dose { font-size: 12px; color: rgba(44,26,14,0.45); }
+
+  .herb-toggle {
+    background: none;
+    border: 2px solid rgba(44,26,14,0.15);
+    border-radius: 100px;
+    padding: 4px 14px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+    color: rgba(44,26,14,0.5);
+  }
+
+  .herb-toggle.taken {
+    background: var(--moss);
+    border-color: var(--moss);
+    color: white;
+  }
+
+  /* BOTTOM ROW */
+  .bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+  }
+
+  /* JOURNAL */
+  .journal-input {
+    width: 100%;
+    background: #F0EBE1;
+    border: 1.5px solid rgba(44,26,14,0.1);
+    border-radius: 14px;
+    padding: 14px 16px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--bark);
+    resize: none;
+    height: 100px;
+    outline: none;
+    line-height: 1.6;
+    transition: border-color 0.2s;
+  }
+
+  .journal-input:focus { border-color: var(--moss); }
+
+  .journal-save {
+    background: var(--moss);
+    color: white;
+    border: none;
+    border-radius: 100px;
+    padding: 10px 24px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 10px;
+    font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s;
+  }
+
+  .journal-save:hover { background: var(--bark); }
+
+  /* MOOD TRACKER */
+  .mood-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .mood-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    padding: 10px 12px;
+    border-radius: 12px;
+    transition: background 0.2s;
+    border: 2px solid transparent;
+  }
+
+  .mood-btn:hover { background: var(--light-sage); }
+  .mood-btn.selected { border-color: var(--moss); background: var(--light-sage); }
+  .mood-emoji { font-size: 24px; }
+  .mood-label { font-size: 11px; color: rgba(44,26,14,0.5); }
+
+  /* WEEKLY CHART */
+  .week-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 80px;
+    margin-top: 16px;
+  }
+
+  .week-bar-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    height: 100%;
+    justify-content: flex-end;
+  }
+
+  .week-bar {
+    width: 100%;
+    background: var(--light-sage);
+    border-radius: 6px 6px 0 0;
+    transition: height 0.5s ease;
+    min-height: 8px;
+  }
+
+  .week-bar.active { background: var(--moss); }
+  .week-label { font-size: 11px; color: rgba(44,26,14,0.4); }
+
+  /* QUICK ACTIONS */
+  .quick-actions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .quick-btn {
+    background: var(--white);
+    border: 1px solid rgba(44,26,14,0.08);
+    border-radius: 16px;
+    padding: 16px 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .quick-btn:hover {
+    border-color: var(--sage);
+    background: var(--light-sage);
+    transform: translateY(-2px);
+  }
+
+  .quick-icon { font-size: 24px; margin-bottom: 8px; display: block; }
+  .quick-label { font-size: 12px; font-weight: 500; color: var(--bark); }
+
+  /* TYPING */
+  .typing span {
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--sage);
+    border-radius: 50%;
+    margin: 0 2px;
+    animation: pulse 1.2s ease infinite;
+  }
+  .typing span:nth-child(2) { animation-delay: 0.2s; }
+  .typing span:nth-child(3) { animation-delay: 0.4s; }
+
+  /* MODAL - Vault */
+  .vault-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(44,26,14,0.5);
+    backdrop-filter: blur(8px);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+  }
+  .vault-modal.active { display: flex; }
+  .vault-modal-inner {
+    background: var(--white);
+    border-radius: 28px;
+    padding: 40px;
+    max-width: 560px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    animation: scaleIn 0.3s ease;
+  }
+  .vault-modal-title { font-family: 'Playfair Display', serif; font-size: 26px; margin-bottom: 8px; }
+  .vault-modal-sub { font-size: 14px; color: rgba(44,26,14,0.5); margin-bottom: 24px; font-weight: 300; }
+  .remedy-list { list-style: none; }
+  .remedy-list li {
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(44,26,14,0.06);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .remedy-list li::before { content: '🌿'; flex-shrink: 0; margin-top: 2px; }
+  .remedy-list strong { display: block; font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+  .remedy-list span { font-size: 13px; color: rgba(44,26,14,0.55); line-height: 1.5; font-weight: 300; }
+  .vault-close {
+    background: var(--moss);
+    color: white;
+    border: none;
+    border-radius: 100px;
+    padding: 12px 28px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 20px; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .dashboard-grid { grid-template-columns: 1fr; }
+    .bottom-row { grid-template-columns: 1fr; }
+    .quick-actions { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- AUTH GATE -->
+<div id="authGate">
+  <div id="authGateCard">
+    <div style="font-size:48px;margin-bottom:16px">🌿</div>
+    <h2>Members Only</h2>
+    <p>Your dashboard is waiting. Start your 7-day free trial to access your personalized wellness plan, AI consultant, and remedy vault.</p>
+    <a href="/" class="gate-btn" onclick="startCheckout(event)">Start Free Trial — $5.99/mo</a>
+    <span class="gate-link">Already a member? <a href="/">Return to homepage</a> and log in.</span>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-logo">Root of <span>Remedy</span></div>
+  <div class="sidebar-nav">
+    <div class="sidebar-section">Main</div>
+    <a class="nav-item active" href="#">
+      <span class="nav-icon">🏠</span> Dashboard
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">🤖</span> AI Consultant
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">📋</span> My Wellness Plan
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">📚</span> Remedy Vault
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">🌿</span> Herb Planner
+    </a>
+    <div class="sidebar-section">Track</div>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">📓</span> Health Journal
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">📊</span> Progress
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">🔔</span> Reminders
+    </a>
+    <div class="sidebar-section">Account</div>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">⚙️</span> Settings
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">💳</span> Billing
+    </a>
+  </div>
+  <div class="sidebar-user">
+    <div class="user-avatar">J</div>
+    <div>
+      <div class="user-name">Jasmine T.</div>
+      <div class="user-plan">✦ Member · $5.99/mo</div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div>
+      <div class="topbar-greeting">Good morning, <span>Jasmine</span> 🌿</div>
+      <div class="topbar-date" id="currentDate"></div>
+    </div>
+    <div class="topbar-actions">
+      <div class="streak-badge"><span class="fire">🔥</span> <strong id="streakCount">7</strong> day streak</div>
+      <div class="notif-btn">🔔</div>
+    </div>
+  </div>
+
+  <!-- QUICK ACTIONS -->
+  <div class="quick-actions">
+    <div class="quick-btn" onclick="focusChat()">
+      <span class="quick-icon">🤖</span>
+      <div class="quick-label">Ask AI</div>
+    </div>
+    <div class="quick-btn" onclick="openVault('immunity')">
+      <span class="quick-icon">📚</span>
+      <div class="quick-label">Remedy Vault</div>
+    </div>
+    <div class="quick-btn">
+      <span class="quick-icon">📋</span>
+      <div class="quick-label">My Plan</div>
+    </div>
+    <div class="quick-btn">
+      <span class="quick-icon">📊</span>
+      <div class="quick-label">Progress</div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <span class="stat-icon">🔥</span>
+      <div class="stat-value">7</div>
+      <div class="stat-label">Day Streak</div>
+      <div class="stat-change">↑ Best ever!</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">✅</span>
+      <div class="stat-value">85%</div>
+      <div class="stat-label">Plan Completion</div>
+      <div class="stat-change">↑ Up 12% this week</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">🌿</span>
+      <div class="stat-value">23</div>
+      <div class="stat-label">Remedies Explored</div>
+      <div class="stat-change">↑ 3 new this week</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">💬</span>
+      <div class="stat-value">41</div>
+      <div class="stat-label">AI Consultations</div>
+      <div class="stat-change">Unlimited ✦</div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD GRID -->
+  <div class="dashboard-grid">
+
+    <!-- LEFT: AI CHAT -->
+    <div class="card ai-chat-card">
+      <div class="card-header">
+        <div class="card-title">AI Remedy Consultant</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--moss);">
+          <span style="width:8px;height:8px;background:#6EE7B7;border-radius:50%;display:inline-block;"></span>
+          Always Online
+        </div>
+      </div>
+      <div class="chat-messages" id="dashChat">
+        <div class="chat-msg ai">
+          <div class="bubble">Welcome back, Jasmine! 🌿 You're on a 7-day streak — amazing commitment to your wellness. How are you feeling today? I can adjust your protocol, answer questions about your herbs, or help with any new symptoms.</div>
+          <div class="msg-time">Just now</div>
+        </div>
+      </div>
+      <div class="chat-input-row">
+        <input type="text" class="chat-field" id="dashChatInput" placeholder="Ask about symptoms, herbs, or your plan..." onkeypress="if(event.key==='Enter')sendDashChat()">
+        <button class="chat-send-btn" onclick="sendDashChat()">↑</button>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="right-col">
+
+      <!-- WELLNESS PLAN -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">My Wellness Plan</div>
+          <a class="card-action" href="#">View Full →</a>
+        </div>
+        <div class="plan-header">
+          <div class="plan-label">This Month's Protocol</div>
+          <div class="plan-name">Anti-Inflammation Reset</div>
+          <div class="plan-progress-bar">
+            <div class="plan-progress-fill"></div>
+          </div>
+          <div class="plan-progress-text">65% complete · Week 3 of 4</div>
+        </div>
+        <div id="protocolList">
+          <div class="protocol-item" onclick="toggleProtocol(this)">
+            <div class="protocol-check done">✓</div>
+            <div class="protocol-info">
+              <div class="protocol-name">Turmeric + Black Pepper</div>
+              <div class="protocol-detail">500mg with breakfast</div>
+            </div>
+            <div class="protocol-time">Morning</div>
+          </div>
+          <div class="protocol-item" onclick="toggleProtocol(this)">
+            <div class="protocol-check done">✓</div>
+            <div class="protocol-info">
+              <div class="protocol-name">Ginger Root Tea</div>
+              <div class="protocol-detail">1 cup, fresh grated</div>
+            </div>
+            <div class="protocol-time">Morning</div>
+          </div>
+          <div class="protocol-item" onclick="toggleProtocol(this)">
+            <div class="protocol-check"></div>
+            <div class="protocol-info">
+              <div class="protocol-name">Ashwagandha</div>
+              <div class="protocol-detail">300mg with lunch</div>
+            </div>
+            <div class="protocol-time">Midday</div>
+          </div>
+          <div class="protocol-item" onclick="toggleProtocol(this)">
+            <div class="protocol-check"></div>
+            <div class="protocol-info">
+              <div class="protocol-name">Magnesium Glycinate</div>
+              <div class="protocol-detail">400mg before bed</div>
+            </div>
+            <div class="protocol-time">Night</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM ROW -->
+  <div class="bottom-row">
+
+    <!-- REMEDY VAULT -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Remedy Vault</div>
+        <a class="card-action" href="#">Browse All →</a>
+      </div>
+      <div class="vault-grid">
+        <div class="vault-item" onclick="openVault('immunity')">
+          <span class="vault-emoji">🛡️</span>
+          <div class="vault-title">Immunity Boosters</div>
+          <div class="vault-count">24 remedies</div>
+        </div>
+        <div class="vault-item" onclick="openVault('sleep')">
+          <span class="vault-emoji">😴</span>
+          <div class="vault-title">Sleep & Stress</div>
+          <div class="vault-count">31 remedies</div>
+        </div>
+        <div class="vault-item" onclick="openVault('digestion')">
+          <span class="vault-emoji">🫄</span>
+          <div class="vault-title">Gut Health</div>
+          <div class="vault-count">19 remedies</div>
+        </div>
+        <div class="vault-item" onclick="openVault('skin')">
+          <span class="vault-emoji">✨</span>
+          <div class="vault-title">Skin & Glow</div>
+          <div class="vault-count">22 remedies</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JOURNAL + MOOD -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Daily Check-In</div>
+        <span style="font-size:13px;color:rgba(44,26,14,0.4)">How are you feeling?</span>
+      </div>
+      <div class="mood-row">
+        <div class="mood-btn" onclick="selectMood(this)">
+          <span class="mood-emoji">😔</span>
+          <span class="mood-label">Rough</span>
+        </div>
+        <div class="mood-btn" onclick="selectMood(this)">
+          <span class="mood-emoji">😐</span>
+          <span class="mood-label">Okay</span>
+        </div>
+        <div class="mood-btn selected" onclick="selectMood(this)">
+          <span class="mood-emoji">🙂</span>
+          <span class="mood-label">Good</span>
+        </div>
+        <div class="mood-btn" onclick="selectMood(this)">
+          <span class="mood-emoji">😄</span>
+          <span class="mood-label">Great</span>
+        </div>
+        <div class="mood-btn" onclick="selectMood(this)">
+          <span class="mood-emoji">🌟</span>
+          <span class="mood-label">Amazing</span>
+        </div>
+      </div>
+      <textarea class="journal-input" placeholder="Any notes on how you're feeling, symptoms, or wins today..."></textarea>
+      <button class="journal-save" onclick="this.textContent='Saved ✓'; setTimeout(()=>this.textContent='Save Entry',2000)">Save Entry</button>
+
+      <!-- WEEKLY WELLNESS -->
+      <div style="margin-top:20px">
+        <div style="font-size:13px;font-weight:500;margin-bottom:4px">This Week's Wellness</div>
+        <div class="week-chart" id="weekChart"></div>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- VAULT MODAL -->
+<div class="vault-modal" id="vaultModal" onclick="if(event.target===this)closeVault()">
+  <div class="vault-modal-inner" id="vaultContent"></div>
+</div>
+
+<script>
+// AUTH GATE — verify member token
+(async function() {
+  const params = new URLSearchParams(window.location.search);
+  const sessionId = params.get('session_id');
+  let token = localStorage.getItem('ror_token');
+  let customerId = localStorage.getItem('ror_customer_id');
+  let memberName = localStorage.getItem('ror_name') || 'Member';
+  let memberEmail = localStorage.getItem('ror_email') || '';
+
+  // New checkout redirect: verify session with backend
+  if (sessionId) {
+    try {
+      const res = await fetch('/api/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_id: sessionId }),
+      });
+      const data = await res.json();
+      if (data.valid && data.token) {
+        token = data.token;
+        customerId = data.customer_id;
+        memberName = data.name || data.email?.split('@')[0] || 'Member';
+        memberEmail = data.email || '';
+        localStorage.setItem('ror_token', token);
+        localStorage.setItem('ror_customer_id', customerId);
+        localStorage.setItem('ror_name', memberName);
+        localStorage.setItem('ror_email', memberEmail);
+        // Clean URL
+        window.history.replaceState({}, '', '/dashboard');
+      }
+    } catch(e) { console.warn('Session verify failed', e); }
+  }
+
+  // Validate existing token
+  if (token && customerId) {
+    try {
+      const res = await fetch('/api/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token, customer_id: customerId }),
+      });
+      const data = await res.json();
+      if (!data.valid) { token = null; localStorage.clear(); }
+    } catch(e) { /* allow — might be offline */ }
+  }
+
+  if (!token) {
+    // Show gate
+    const gate = document.getElementById('authGate');
+    if (gate) gate.classList.add('active');
+  } else {
+    // Personalize dashboard
+    window._rorToken = token;
+    window._rorCustomerId = customerId;
+    const greeting = document.querySelector('.topbar-greeting span');
+    const avatarEl = document.querySelector('.user-avatar');
+    const nameEl = document.querySelector('.user-name');
+    if (greeting) greeting.textContent = memberName;
+    if (avatarEl) avatarEl.textContent = memberName[0]?.toUpperCase() || 'M';
+    if (nameEl) nameEl.textContent = memberName;
+    const firstMsg = document.querySelector('#dashChat .bubble');
+    if (firstMsg) firstMsg.innerHTML = `Welcome back, ${memberName}! 🌿 How are you feeling today? I can adjust your protocol, answer questions about your herbs, or help with any new symptoms.`;
+  }
+})();
+
+// DATE
+const now = new Date();
+document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric', year:'numeric' });
+
+// WEEK CHART
+const days = ['M','T','W','T','F','S','S'];
+const scores = [60,75,80,55,90,85,70];
+const chart = document.getElementById('weekChart');
+days.forEach((d, i) => {
+  const wrap = document.createElement('div');
+  wrap.className = 'week-bar-wrap';
+  const bar = document.createElement('div');
+  bar.className = 'week-bar' + (i === 6 ? ' active' : '');
+  bar.style.height = scores[i] + '%';
+  const label = document.createElement('div');
+  label.className = 'week-label';
+  label.textContent = d;
+  wrap.appendChild(bar);
+  wrap.appendChild(label);
+  chart.appendChild(wrap);
+});
+
+// PROTOCOL TOGGLE
+function toggleProtocol(item) {
+  const check = item.querySelector('.protocol-check');
+  check.classList.toggle('done');
+  check.textContent = check.classList.contains('done') ? '✓' : '';
+}
+
+// MOOD
+function selectMood(btn) {
+  document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+// FOCUS CHAT
+function focusChat() {
+  document.getElementById('dashChatInput').focus();
+}
+
+// VAULT DATA
+const vaultData = {
+  immunity: {
+    title: '🛡️ Immunity Boosters',
+    sub: '24 natural remedies to strengthen your immune system',
+    items: [
+      { name: 'Elderberry Syrup Protocol', desc: 'Take 1 tbsp elderberry syrup daily during cold season. Rich in antioxidants and proven to reduce duration of illness by up to 4 days.' },
+      { name: 'Zinc + Vitamin C Stack', desc: 'Zinc (15-30mg) + Vitamin C (1000mg) taken together enhance immune cell function. Best taken with food to avoid nausea.' },
+      { name: 'Echinacea Tincture', desc: 'Take at first sign of illness — 20 drops in water 3x daily for up to 10 days. Do not use continuously for more than 8 weeks.' },
+      { name: 'Raw Garlic Protocol', desc: 'Crush 1-2 raw garlic cloves and let sit 10 minutes (activates allicin), then consume with honey. Potent antimicrobial and immune stimulant.' },
+      { name: 'Astragalus Root Tea', desc: 'Simmer 3-5g dried root for 20 minutes. Drink daily as a long-term immune tonic. Used in Traditional Chinese Medicine for thousands of years.' },
+    ]
+  },
+  sleep: {
+    title: '😴 Sleep & Stress Remedies',
+    sub: '31 protocols for deep rest and nervous system calm',
+    items: [
+      { name: 'Ashwagandha Night Protocol', desc: '300-600mg ashwagandha (KSM-66 extract) taken 1 hour before bed. Lowers cortisol and significantly improves sleep quality within 8 weeks.' },
+      { name: 'Magnesium Glycinate Stack', desc: '400mg magnesium glycinate at bedtime. Highly bioavailable form that relaxes muscles and calms the nervous system without digestive side effects.' },
+      { name: 'Valerian + Passionflower Tea', desc: 'Steep 1 tsp each valerian root and passionflower for 15 min. Drink 30-45 minutes before bed. Clinically studied for sleep onset improvement.' },
+      { name: 'L-Theanine Protocol', desc: '100-200mg L-Theanine (from green tea) promotes alpha brain waves — calm alertness during the day, improved sleep quality at night.' },
+      { name: 'Lavender Aromatherapy', desc: '2-3 drops lavender essential oil diffused in bedroom 30 minutes before sleep. Research shows 14% improvement in sleep quality.' },
+    ]
+  },
+  digestion: {
+    title: '🫄 Gut Health Protocols',
+    sub: '19 remedies for digestive health and gut microbiome',
+    items: [
+      { name: 'Ginger Digestive Tonic', desc: 'Fresh ginger tea (1 inch grated) with lemon juice 15 minutes before meals. Stimulates digestive enzymes and reduces bloating significantly.' },
+      { name: 'Probiotic Protocol', desc: 'Lactobacillus acidophilus + Bifidobacterium (25-50B CFU) taken on empty stomach morning. Rotate strains every 3 months for diversity.' },
+      { name: 'Slippery Elm Gut Coat', desc: '1 tsp slippery elm powder in warm water before meals. Creates protective mucilage layer on gut lining — excellent for IBS and leaky gut.' },
+      { name: 'Apple Cider Vinegar Reset', desc: '1 tbsp raw ACV in 8oz water 20 minutes before meals. Increases stomach acid production and improves protein digestion.' },
+      { name: 'Fennel Seed Tea', desc: 'Crush 1 tsp fennel seeds, steep in boiling water for 10 minutes. Powerful carminative — relieves gas, bloating and cramping within 20 minutes.' },
+    ]
+  },
+  skin: {
+    title: '✨ Skin & Glow Protocols',
+    sub: '22 natural remedies for radiant, healthy skin',
+    items: [
+      { name: 'Collagen Boosting Stack', desc: 'Vitamin C (1000mg) + Silica + Zinc taken together. This trio is essential for collagen synthesis — noticeable skin improvement in 6-8 weeks.' },
+      { name: 'Turmeric Golden Milk', desc: 'Warm milk with 1 tsp turmeric, pinch black pepper, honey. Anti-inflammatory powerhouse that reduces skin redness and promotes even tone.' },
+      { name: 'Rosehip Oil Protocol', desc: 'Apply 3-5 drops rosehip seed oil to damp skin at night. Rich in vitamin A and C. Clinically shown to reduce hyperpigmentation and fine lines.' },
+      { name: 'Spearmint Tea for Hormonal Acne', desc: '2 cups spearmint tea daily. Multiple studies show significant reduction in hormonal acne by lowering androgen levels naturally.' },
+      { name: 'Aloe + Niacinamide Routine', desc: 'Fresh aloe vera gel + niacinamide serum (10%) applied morning and night. Reduces pores, brightens skin and strengthens moisture barrier.' },
+    ]
+  }
+};
+
+function openVault(type) {
+  const data = vaultData[type];
+  const content = document.getElementById('vaultContent');
+  content.innerHTML = `
+    <h2 class="vault-modal-title">${data.title}</h2>
+    <p class="vault-modal-sub">${data.sub}</p>
+    <ul class="remedy-list">
+      ${data.items.map(item => `
+        <li>
+          <div>
+            <strong>${item.name}</strong>
+            <span>${item.desc}</span>
+          </div>
+        </li>
+      `).join('')}
+    </ul>
+    <button class="vault-close" onclick="closeVault()">Close</button>
+  `;
+  document.getElementById('vaultModal').classList.add('active');
+}
+
+function closeVault() {
+  document.getElementById('vaultModal').classList.remove('active');
+}
+
+// DASHBOARD AI CHAT
+let dashHistory = [];
+
+async function sendDashChat() {
+  const input = document.getElementById('dashChatInput');
+  const body = document.getElementById('dashChat');
+  const message = input.value.trim();
+  if (!message) return;
+
+  const time = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+
+  const userDiv = document.createElement('div');
+  userDiv.className = 'chat-msg user';
+  userDiv.innerHTML = `<div class="bubble">${message}</div><div class="msg-time">${time}</div>`;
+  body.appendChild(userDiv);
+  input.value = '';
+  body.scrollTop = body.scrollHeight;
+
+  const typingDiv = document.createElement('div');
+  typingDiv.className = 'chat-msg ai';
+  typingDiv.innerHTML = `<div class="bubble typing"><span></span><span></span><span></span></div>`;
+  body.appendChild(typingDiv);
+  body.scrollTop = body.scrollHeight;
+
+  dashHistory.push({ role: "user", content: message });
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        messages: dashHistory,
+        token: window._rorToken || '',
+        customer_id: window._rorCustomerId || '',
+      }),
+    });
+    const data = await res.json();
+    const aiText = data.text || "Based on your current protocol, I'd suggest staying consistent with your evening Magnesium Glycinate — it's doing important work for your recovery. Want me to explain more about any of your herbs?";
+    dashHistory.push({ role: 'assistant', content: aiText });
+    typingDiv.remove();
+    const aiDiv = document.createElement('div');
+    aiDiv.className = 'chat-msg ai';
+    const aiTime = new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    aiDiv.innerHTML = `<div class="bubble">${aiText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</div><div class="msg-time">${aiTime}</div>`;
+    body.appendChild(aiDiv);
+  } catch (e) {
+    typingDiv.remove();
+    const fallback = 'Great question! Keep consistent with all 4 herbs this week and you should notice meaningful improvement. Want me to suggest any additions?';
+    dashHistory.push({ role: 'assistant', content: fallback });
+    const aiDiv = document.createElement('div');
+    aiDiv.className = 'chat-msg ai';
+    aiDiv.innerHTML = `<div class="bubble">${fallback}</div>`;
+    body.appendChild(aiDiv);
+  }
+
+  body.scrollTop = body.scrollHeight;
+}
+</script>
+</body>
+</html>
