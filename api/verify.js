@@ -30,8 +30,12 @@ module.exports = async (req, res) => {
 
     // Validate existing token
     if (token && customer_id) {
-      const valid = checkToken(customer_id, token, secret);
-      return res.status(200).json({ valid });
+      try {
+        const valid = checkToken(customer_id, token, secret);
+        return res.status(200).json({ valid });
+      } catch(e) {
+        return res.status(200).json({ valid: false });
+      }
     }
 
     // New session: look up Stripe
