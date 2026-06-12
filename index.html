@@ -217,6 +217,74 @@ footer{background:var(--dark);color:var(--cream);padding:60px 48px 28px;}
   .ri-icon{font-size:24px;flex-shrink:0;margin-top:2px;}
   .ri-name{font-size:14px;font-weight:500;color:var(--bark);margin-bottom:4px;}
   .ri-detail{font-size:13px;color:rgba(44,26,14,0.6);line-height:1.5;}
+
+/* ===== PLAN REVEAL SCREEN ===== */
+#stepPlanReveal{display:none;}
+#stepPlanReveal.active{display:block;}
+.plan-reveal{text-align:left;}
+
+/* Building animation */
+.building-beat{text-align:center;padding:40px 20px;}
+.building-beat .building-dots{display:flex;justify-content:center;gap:8px;margin-bottom:16px;}
+.building-beat .building-dot{width:10px;height:10px;background:var(--moss);border-radius:50%;animation:buildPulse 1.2s ease infinite;}
+.building-beat .building-dot:nth-child(2){animation-delay:0.2s;}
+.building-beat .building-dot:nth-child(3){animation-delay:0.4s;}
+@keyframes buildPulse{0%,100%{transform:scale(0.6);opacity:0.4;}50%{transform:scale(1.1);opacity:1;}}
+.building-text{font-family:'Playfair Display',serif;font-size:18px;color:var(--bark);margin-bottom:6px;}
+.building-sub{font-size:13px;color:rgba(44,26,14,0.5);}
+
+/* A. Personalized recap */
+.pr-recap{background:linear-gradient(135deg,#3D5A3E,#2a4028);border-radius:18px;padding:20px 22px;color:white;margin-bottom:18px;}
+.pr-recap-label{font-size:10px;text-transform:uppercase;letter-spacing:2px;opacity:0.55;margin-bottom:8px;}
+.pr-recap-text{font-size:14px;line-height:1.7;opacity:0.92;}
+.pr-recap-text strong{color:#a8d5a2;}
+
+/* B. Starter Protocol (unlocked) */
+.pr-section-label{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--gold);font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.pr-section-label .pr-badge{background:rgba(196,147,63,0.12);border:1px solid rgba(196,147,63,0.3);padding:2px 8px;border-radius:100px;font-size:10px;}
+.pr-protocol-card{background:var(--white);border:1.5px solid rgba(61,90,62,0.15);border-radius:14px;padding:0;margin-bottom:18px;overflow:hidden;}
+.pr-item{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border-bottom:1px solid rgba(44,26,14,0.06);}
+.pr-item:last-child{border-bottom:none;}
+.pr-item-icon{font-size:22px;flex-shrink:0;margin-top:1px;}
+.pr-item-name{font-size:13px;font-weight:600;color:var(--bark);margin-bottom:3px;}
+.pr-item-dose{font-size:12px;color:var(--moss);font-weight:500;margin-bottom:3px;}
+.pr-item-detail{font-size:12px;color:rgba(44,26,14,0.58);line-height:1.5;}
+.pr-item-warn{font-size:11px;color:#b85c00;background:rgba(184,92,0,0.08);border-radius:6px;padding:3px 7px;margin-top:5px;display:inline-block;}
+
+/* C. Locked / blurred section */
+.pr-locked-wrap{position:relative;margin-bottom:18px;border-radius:14px;overflow:hidden;}
+.pr-locked-blur{filter:blur(3.5px);pointer-events:none;user-select:none;opacity:0.7;}
+.pr-locked-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(245,240,232,0.35) 0%,rgba(245,240,232,0.92) 60%,rgba(245,240,232,1) 100%);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:16px;}
+.pr-lock-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:0;padding:0 12px;}
+.pr-lock-chip{background:rgba(44,26,14,0.07);border:1px solid rgba(44,26,14,0.12);border-radius:100px;font-size:11px;color:rgba(44,26,14,0.55);padding:4px 12px;display:flex;align-items:center;gap:4px;}
+
+/* D. What unlocking gets you */
+.pr-unlock-features{margin-bottom:18px;}
+.pr-unlock-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(44,26,14,0.06);}
+.pr-unlock-row:last-child{border-bottom:none;}
+.pr-unlock-icon{font-size:18px;flex-shrink:0;width:28px;text-align:center;}
+.pr-unlock-title{font-size:13px;font-weight:500;color:var(--bark);}
+.pr-unlock-desc{font-size:12px;color:rgba(44,26,14,0.5);}
+
+/* E. CTA + reassurance */
+.pr-cta-btn{width:100%;background:var(--gold);color:var(--bark);border:none;border-radius:100px;padding:16px 20px;font-size:15px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.3s;margin-bottom:12px;line-height:1.3;}
+.pr-cta-btn:hover{background:#d4a34f;transform:translateY(-2px);}
+.pr-reassurance{font-size:13px;color:rgba(44,26,14,0.6);line-height:1.6;margin-bottom:10px;text-align:center;padding:0 4px;}
+.pr-price-line{font-size:12px;color:rgba(44,26,14,0.4);text-align:center;margin-bottom:14px;}
+.pr-guarantee-badge{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:var(--moss);font-weight:500;margin-bottom:18px;}
+
+/* F. Medical disclaimer */
+.pr-disclaimer{background:rgba(44,26,14,0.04);border-left:3px solid rgba(44,26,14,0.18);border-radius:0 8px 8px 0;padding:12px 14px;font-size:11px;color:rgba(44,26,14,0.55);line-height:1.6;}
+.pr-disclaimer a{color:var(--moss);text-decoration:underline;}
+
+/* Two-step signup modal */
+.signup-step{display:none;}
+.signup-step.active{display:block;}
+.step-indicator{display:flex;gap:8px;margin-bottom:24px;align-items:center;}
+.step-pip{width:28px;height:4px;background:rgba(44,26,14,0.1);border-radius:100px;transition:background 0.3s;}
+.step-pip.done{background:var(--moss);}
+.step-back{background:none;border:none;color:rgba(44,26,14,0.4);font-size:13px;cursor:pointer;padding:0;margin-bottom:16px;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:4px;}
+.step-back:hover{color:var(--bark);}
 </style>
 </head>
 <body>
@@ -317,21 +385,73 @@ footer{background:var(--dark);color:var(--cream);padding:60px 48px 28px;}
         <p style="font-size:11px;color:rgba(44,26,14,0.35);text-align:center;margin-top:10px;">No spam. Unsubscribe anytime.</p>
       </div>
 
-      <!-- RESULTS -->
-      <div class="quiz-step" id="stepResults">
-        <div class="results-preview">
-          <div class="results-header">
-            <div class="results-label">Your Personalized Plan</div>
-            <div class="results-name" id="resultsTitle">Your Wellness Protocol</div>
-            <div class="results-sub" id="resultsSub">Built by AI based on your answers</div>
-          </div>
-          <div class="results-items" id="resultsItems"></div>
-          <div class="unlock-cta">
-            <button class="unlock-btn" onclick="openSignup()">Start 7-Day Free Trial to Unlock Everything</button>
-            <p class="unlock-note">Card required · $5.99/mo or $47.99/year · Cancel anytime</p>
-          </div>
-        </div>
+      <!-- RESULTS (old - hidden) -->
+      <div class="quiz-step" id="stepResults" style="display:none!important">
       </div>
+
+      <!-- PLAN REVEAL SCREEN -->
+      <div class="quiz-step" id="stepPlanReveal">
+        <!-- Building beat animation -->
+        <div id="planBuildingAnim" class="building-beat">
+          <div class="building-dots">
+            <div class="building-dot"></div>
+            <div class="building-dot"></div>
+            <div class="building-dot"></div>
+          </div>
+          <div class="building-text">Building your plan…</div>
+          <div class="building-sub">Personalizing based on your answers</div>
+        </div>
+
+        <!-- Actual plan reveal (hidden until built) -->
+        <div id="planRevealContent" class="plan-reveal" style="display:none">
+
+          <!-- A. Personalized recap -->
+          <div class="pr-recap" id="prRecap">
+            <div class="pr-recap-label">Your Personalized Plan</div>
+            <div class="pr-recap-text" id="prRecapText"></div>
+          </div>
+
+          <!-- B. Starter Protocol UNLOCKED -->
+          <div class="pr-section-label">✅ Your Starter Protocol <span class="pr-badge">UNLOCKED</span></div>
+          <div class="pr-protocol-card" id="prUnlockedItems"></div>
+
+          <!-- C. Locked blurred preview -->
+          <div class="pr-section-label" style="margin-top:18px;">🔒 The Rest of Your Plan</div>
+          <div class="pr-locked-wrap">
+            <div class="pr-locked-blur" id="prLockedBlur"></div>
+            <div class="pr-locked-overlay">
+              <div style="font-size:28px;margin-bottom:8px;">🔒</div>
+              <div style="font-family:'Playfair Display',serif;font-size:15px;color:var(--bark);margin-bottom:10px;font-weight:700;">Unlock your complete plan + AI consultant</div>
+              <div class="pr-lock-chips" id="prLockChips">
+                <span class="pr-lock-chip">🔒 Your full protocol</span>
+                <span class="pr-lock-chip">🔒 Daily routine & timing</span>
+                <span class="pr-lock-chip">🔒 Dosage & interaction guidance</span>
+                <span class="pr-lock-chip">🔒 Progress tracking</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- D. What unlocking gets you -->
+          <div class="pr-unlock-features">
+            <div class="pr-unlock-row"><div class="pr-unlock-icon">🤖</div><div><div class="pr-unlock-title">AI Remedy Consultant</div><div class="pr-unlock-desc">Unlimited consultations, 24/7</div></div></div>
+            <div class="pr-unlock-row"><div class="pr-unlock-icon">📋</div><div><div class="pr-unlock-title">Full Personalized Plan</div><div class="pr-unlock-desc">Complete protocol + daily routine built for you</div></div></div>
+            <div class="pr-unlock-row"><div class="pr-unlock-icon">📚</div><div><div class="pr-unlock-title">Remedy Vault (500+)</div><div class="pr-unlock-desc">Every herb, every protocol, searchable</div></div></div>
+            <div class="pr-unlock-row"><div class="pr-unlock-icon">🌿</div><div><div class="pr-unlock-title">Herb & Supplement Planner</div><div class="pr-unlock-desc">Dosage, timing & interaction guidance</div></div></div>
+          </div>
+
+          <!-- E. CTA + reassurance -->
+          <button class="pr-cta-btn" onclick="openPlanRevealSignup()">Unlock my full plan — Start 7-day free trial →</button>
+          <p class="pr-reassurance">We'll email you 2 days before your trial ends. Cancel in two taps, anytime — you won't be charged if you cancel before day 7.</p>
+          <p class="pr-price-line">$5.99/mo or $47.99/yr · cancel anytime</p>
+          <div class="pr-guarantee-badge">✦ No surprise charges · Cancel anytime · 7-day free trial</div>
+
+          <!-- F. Medical disclaimer (visible on screen, not a dead link) -->
+          <div class="pr-disclaimer">
+            Root of Remedy supports your wellness routine and is not a substitute for professional medical care. Talk to your doctor before starting any new supplement, especially if you're pregnant, nursing, taking medication, or managing a condition. <a href="/disclaimer.html" target="_blank">Full Medical Disclaimer →</a>
+          </div>
+
+        </div><!-- /planRevealContent -->
+      </div><!-- /stepPlanReveal -->
 
     </div>
   </div>
@@ -545,7 +665,7 @@ footer{background:var(--dark);color:var(--cream);padding:60px 48px 28px;}
       <ul>
         <li><a href="/privacy.html">Privacy Policy</a></li>
         <li><a href="/terms.html">Terms of Service</a></li>
-        <li><a href="#">Medical Disclaimer</a></li>
+        <li><a href="/disclaimer.html">Medical Disclaimer</a></li>
         <li><a href="#">Refund Policy</a></li>
       </ul>
     </div>
@@ -556,35 +676,51 @@ footer{background:var(--dark);color:var(--cream);padding:60px 48px 28px;}
   </div>
 </footer>
 
-<!-- SIGNUP MODAL -->
+<!-- SIGNUP MODAL (Two-step: account first, payment second) -->
 <div class="modal-bg" id="signupModal" onclick="if(event.target===this)closeSignup()">
   <div class="modal">
     <button class="modal-close" onclick="closeSignup()">×</button>
     <div id="signupForm">
-      <h2 class="modal-title">Start healing naturally.</h2>
-      <p class="modal-sub">7-day free trial. Card required. Cancel anytime before trial ends and you won't be charged a thing.</p>
-      <div class="plan-select">
-        <div class="plan-opt selected" id="planMonthly" onclick="selectPlan('monthly')">
-          <div class="plan-opt-name">Monthly</div>
-          <div class="plan-opt-price">$5.99</div>
-          <div class="plan-opt-note">per month</div>
-        </div>
-        <div class="plan-opt" id="planAnnual" onclick="selectPlan('annual')">
-          <div class="plan-opt-name">Annual</div>
-          <div class="plan-opt-price">$47.99</div>
-          <div class="plan-opt-note">Save 33% · $4/mo</div>
-        </div>
+
+      <!-- Step 1: Account details -->
+      <div class="signup-step active" id="signupStep1">
+        <div class="step-indicator"><div class="step-pip done" id="spip1"></div><div class="step-pip" id="spip2"></div></div>
+        <h2 class="modal-title">Create your account</h2>
+        <p class="modal-sub">Step 1 of 2 — Your free trial starts after you add a card in the next step.</p>
+        <div class="form-group"><label class="form-label">Full Name</label><input type="text" class="form-input" id="signupName" placeholder="Your name"></div>
+        <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" id="signupEmail" placeholder="you@email.com"></div>
+        <div class="form-group"><label class="form-label">Password</label><input type="password" class="form-input" id="signupPass" placeholder="Create a password (6+ chars)"></div>
+        <button class="form-submit" onclick="goToStep2()">Continue to payment →</button>
+        <p class="form-terms">No card yet — just your account details here.</p>
       </div>
-      <div class="form-group"><label class="form-label">Full Name</label><input type="text" class="form-input" id="signupName" placeholder="Your name"></div>
-      <div class="form-group"><label class="form-label">Email Address</label><input type="email" class="form-input" id="signupEmail" placeholder="you@email.com"></div>
-      <div class="form-group"><label class="form-label">Password</label><input type="password" class="form-input" id="signupPass" placeholder="Create a password"></div>
-      <div class="form-group"><label class="form-label">Card Number</label><input type="text" class="form-input" placeholder="•••• •••• •••• ••••" maxlength="19" oninput="formatCard(this)"></div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-        <div class="form-group"><label class="form-label">Expiry</label><input type="text" class="form-input" placeholder="MM/YY" maxlength="5"></div>
-        <div class="form-group"><label class="form-label">CVV</label><input type="text" class="form-input" placeholder="•••" maxlength="3"></div>
+
+      <!-- Step 2: Plan + payment -->
+      <div class="signup-step" id="signupStep2">
+        <div class="step-indicator"><div class="step-pip done" id="spip1b"></div><div class="step-pip done" id="spip2b"></div></div>
+        <button class="step-back" onclick="goToStep1()">← Back</button>
+        <h2 class="modal-title">Start your free trial</h2>
+        <p class="modal-sub">Step 2 of 2 — Choose your plan. Your 7-day trial is free; we'll remind you 2 days before it ends.</p>
+        <div class="plan-select">
+          <div class="plan-opt selected" id="planMonthly" onclick="selectPlan('monthly')">
+            <div class="plan-opt-name">Monthly</div>
+            <div class="plan-opt-price">$5.99</div>
+            <div class="plan-opt-note">per month</div>
+          </div>
+          <div class="plan-opt" id="planAnnual" onclick="selectPlan('annual')">
+            <div class="plan-opt-name">Annual</div>
+            <div class="plan-opt-price">$47.99</div>
+            <div class="plan-opt-note">Save 33% · $4/mo</div>
+          </div>
+        </div>
+        <div class="form-group"><label class="form-label">Card Number</label><input type="text" class="form-input" placeholder="•••• •••• •••• ••••" maxlength="19" oninput="formatCard(this)"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div class="form-group"><label class="form-label">Expiry</label><input type="text" class="form-input" placeholder="MM/YY" maxlength="5"></div>
+          <div class="form-group"><label class="form-label">CVV</label><input type="text" class="form-input" placeholder="•••" maxlength="3"></div>
+        </div>
+        <button class="form-submit" onclick="submitSignup()">Start My Free Trial →</button>
+        <p class="form-terms">7-day free trial · We'll email you before you're charged · Cancel anytime</p>
       </div>
-      <button class="form-submit" onclick="submitSignup()">Start My Free Trial →</button>
-      <p class="form-terms">By signing up you agree to our Terms of Service. Your trial is free for 7 days then auto-renews. Cancel anytime.</p>
+
     </div>
     <div class="success-state" id="signupSuccess">
       <div class="success-icon">🌿</div>
@@ -599,6 +735,7 @@ footer{background:var(--dark);color:var(--cream);padding:60px 48px 28px;}
 let answers = {};
 let currentStep = 0;
 const totalSteps = 5;
+let planRevealOpen = false;
 
 function selectOpt(btn, key, val) {
   btn.closest('.quiz-options').querySelectorAll('.quiz-opt').forEach(b => b.classList.remove('selected'));
@@ -622,115 +759,188 @@ function checkEmailStep() {
   document.getElementById('next4').disabled = !(name && email.includes('@'));
 }
 
-const protocolMap = {
-  sleep: { title: 'Deep Sleep Recovery Protocol', sub: 'Targeting cortisol, magnesium deficiency & nervous system calm',
-    items: [
-      { icon:'🌿', name:'Ashwagandha KSM-66', detail:'300mg nightly · lowers cortisol for deeper sleep' },
-      { icon:'💊', name:'Magnesium Glycinate', detail:'400mg before bed · muscle relaxation & melatonin production' },
-      { icon:'🫖', name:'Valerian + Passionflower Tea', detail:'1 cup 45 min before bed · clinically studied for sleep onset' },
-      { icon:'📋', name:'Your Full Sleep Plan', detail:'7 more protocols, lifestyle adjustments & tracker', locked:true }
-    ]
+
+// ===== PLAN REVEAL CONTENT MAP =====
+const PLAN_REVEAL_MAP = {
+  sleep: {
+    concern: 'sleep & fatigue',
+    unlocked: [
+      { icon:'💊', name:'Magnesium glycinate', dose:'200–400 mg, ~1 hr before bed', detail:'Gentle mineral traditionally used to support relaxation and restful sleep.' },
+      { icon:'🍵', name:'L-theanine', dose:'100–200 mg, evening', detail:'Amino acid from tea, used to support a calm, settled mind.' }
+    ],
+    lockedRows: [
+      { icon:'🌼', name:'Chamomile extract', dose:'400 mg', detail:'🔒 Unlock with your trial' },
+      { icon:'⏰', name:'Wind-down routine', dose:'Timing protocol', detail:'🔒 Unlock with your trial' },
+      { icon:'💡', name:'Light & caffeine timing', dose:'Daily habit guide', detail:'🔒 Unlock with your trial' },
+    ],
+    durationFraming: { recent: 'a gentle starting point', months: 'a steady, build-over-time approach', year: 'a steady, build-over-time approach', chronic: 'a steady, build-over-time approach' },
+    goalFraming: { relief: 'Magnesium glycinate is your fastest-acting item — start here tonight.', longterm: 'Consistency over time is key. These build on each other over weeks.', maintenance: 'These support your existing routine with gentle daily practice.', natural: 'Both items are naturally derived with no synthetic ingredients.' }
   },
-  stress: { title: 'Stress & Anxiety Relief Protocol', sub: 'Adaptogenic herbs to balance cortisol and calm the nervous system',
-    items: [
-      { icon:'🌿', name:'Ashwagandha', detail:'600mg daily · proven 28% cortisol reduction in studies' },
-      { icon:'🍃', name:'Holy Basil (Tulsi)', detail:'500mg or tea · balances stress hormones naturally' },
-      { icon:'💊', name:'L-Theanine', detail:'200mg · calm focus without drowsiness' },
-      { icon:'📋', name:'Your Full Stress Plan', detail:'8 more protocols, breathing exercises & journal', locked:true }
-    ]
+  stress: {
+    concern: 'stress & anxiety',
+    unlocked: [
+      { icon:'🌿', name:'Ashwagandha (KSM-66)', dose:'300–600 mg/day', detail:'Adaptogen traditionally used to support the body\'s stress response.', warn:'Avoid during pregnancy and with thyroid medication — check with your doctor.' },
+      { icon:'🍵', name:'L-theanine', dose:'200 mg as needed', detail:'Supports calm focus without drowsiness.' }
+    ],
+    lockedRows: [
+      { icon:'💊', name:'Magnesium glycinate', dose:'200–400 mg/day', detail:'🔒 Unlock with your trial' },
+      { icon:'🫁', name:'Breathwork protocol', dose:'Daily practice', detail:'🔒 Unlock with your trial' },
+      { icon:'📔', name:'Daily grounding routine', dose:'Morning habit', detail:'🔒 Unlock with your trial' },
+    ],
+    durationFraming: { recent: 'a gentle starting point', months: 'a steady, build-over-time approach', year: 'a steady, build-over-time approach', chronic: 'a steady, build-over-time approach' },
+    goalFraming: { relief: 'L-theanine works quickly — ideal for acute stressful moments.', longterm: 'Ashwagandha builds up over 4–8 weeks of consistent daily use.', maintenance: 'These support your body\'s baseline stress resilience.', natural: 'Both are plant-derived adaptogens with a long traditional use history.' }
   },
-  inflammation: { title: 'Anti-Inflammation Reset Protocol', sub: 'Targeting root causes of systemic inflammation',
-    items: [
-      { icon:'🌿', name:'Turmeric + Black Pepper', detail:'500mg curcumin · black pepper increases absorption 2000%' },
-      { icon:'🫚', name:'Omega-3 Fish Oil', detail:'2000mg EPA/DHA daily · potent anti-inflammatory' },
-      { icon:'🌱', name:'Boswellia Extract', detail:'300mg · reduces inflammatory markers significantly' },
-      { icon:'📋', name:'Your Full Protocol', detail:'Anti-inflammatory diet plan, 6 more herbs & tracker', locked:true }
-    ]
+  inflammation: {
+    concern: 'pain & inflammation',
+    unlocked: [
+      { icon:'🌿', name:'Curcumin (turmeric)', dose:'500 mg with black pepper/piperine', detail:'Traditionally used to support a healthy inflammatory response.', warn:'Talk to your doctor if you take blood thinners.' },
+      { icon:'🐟', name:'Omega-3 (fish oil)', dose:'1–2 g combined EPA/DHA daily', detail:'Used to support joint comfort.' }
+    ],
+    lockedRows: [
+      { icon:'🫚', name:'Ginger root', dose:'Up to 1 g/day', detail:'🔒 Unlock with your trial' },
+      { icon:'🍒', name:'Tart cherry extract', dose:'Daily routine', detail:'🔒 Unlock with your trial' },
+      { icon:'🏃', name:'Gentle-movement protocol', dose:'Daily guide', detail:'🔒 Unlock with your trial' },
+    ],
+    durationFraming: { recent: 'a gentle starting point', months: 'a steady, build-over-time approach', year: 'a steady, build-over-time approach', chronic: 'a steady, build-over-time approach' },
+    goalFraming: { relief: 'Omega-3 has a shorter onset — a good place to start right away.', longterm: 'Curcumin accumulates benefits over several weeks of consistent use.', maintenance: 'These two work well together as a long-term daily stack.', natural: 'Both are well-studied plant and marine sources, no synthetics.' }
   },
-  gut: { title: 'Gut Health Restoration Protocol', sub: 'Rebuilding your microbiome and healing the gut lining',
-    items: [
-      { icon:'🦠', name:'Multi-Strain Probiotic', detail:'50B CFU · Lactobacillus & Bifidobacterium blend' },
-      { icon:'🌿', name:'Slippery Elm Bark', detail:'1 tsp in water before meals · heals gut lining' },
-      { icon:'🫖', name:'Ginger Digestive Tonic', detail:'Fresh ginger tea before meals · stimulates enzymes' },
-      { icon:'📋', name:'Your Full Gut Plan', detail:'5-day gut reset, elimination guide & meal plan', locked:true }
-    ]
+  gut: {
+    concern: 'gut & digestion',
+    unlocked: [
+      { icon:'🫚', name:'Ginger', dose:'Up to 1 g/day or as tea', detail:'Traditionally used to support digestion and ease occasional upset.' },
+      { icon:'🌿', name:'Enteric-coated peppermint oil', dose:'Per label', detail:'Used to support digestive comfort.' }
+    ],
+    lockedRows: [
+      { icon:'🦠', name:'Probiotic guidance', dose:'Strain selection', detail:'🔒 Unlock with your trial' },
+      { icon:'🌾', name:'Fiber timing guide', dose:'Daily intake plan', detail:'🔒 Unlock with your trial' },
+      { icon:'🍽️', name:'Meal-timing protocol', dose:'Daily schedule', detail:'🔒 Unlock with your trial' },
+    ],
+    durationFraming: { recent: 'a gentle starting point', months: 'a steady, build-over-time approach', year: 'a steady, build-over-time approach', chronic: 'a steady, build-over-time approach' },
+    goalFraming: { relief: 'Ginger tea before meals can provide comfort quickly.', longterm: 'Gut health responds best to consistent daily habits over months.', maintenance: 'These support your existing digestive routine gently.', natural: 'Both are whole-plant sources with centuries of traditional use.' }
   },
-  immunity: { title: 'Immune System Boost Protocol', sub: 'Strengthening your natural defenses year-round',
-    items: [
-      { icon:'🛡️', name:'Elderberry + Zinc Stack', detail:'Elderberry 600mg + Zinc 15mg · proven immune support' },
-      { icon:'☀️', name:'Vitamin D3 + K2', detail:'5000 IU D3 · 80% of Americans are deficient' },
-      { icon:'🌿', name:'Astragalus Root', detail:'500mg daily · long-term immune tonic from TCM' },
-      { icon:'📋', name:'Your Full Immunity Plan', detail:'Seasonal protocols, 6 more herbs & prevention guide', locked:true }
-    ]
+  immunity: {
+    concern: 'low immunity',
+    unlocked: [
+      { icon:'🫐', name:'Elderberry (standardized extract)', dose:'Daily through cold season', detail:'Antioxidant-rich, traditionally used to support immune health.' },
+      { icon:'☀️', name:'Vitamin D3', dose:'1,000–2,000 IU/day', detail:'Supports normal immune function. Ideally confirm levels with bloodwork.', warn:'Consider getting your D3 levels checked — most people are low.' }
+    ],
+    lockedRows: [
+      { icon:'💊', name:'Zinc protocol', dose:'Daily dosing guide', detail:'🔒 Unlock with your trial' },
+      { icon:'🍊', name:'Vitamin C timing', dose:'Daily routine', detail:'🔒 Unlock with your trial' },
+      { icon:'😴', name:'Sleep-and-immunity protocol', dose:'Habit guide', detail:'🔒 Unlock with your trial' },
+    ],
+    durationFraming: { recent: 'a gentle starting point', months: 'a steady, build-over-time approach', year: 'a steady, build-over-time approach', chronic: 'a steady, build-over-time approach' },
+    goalFraming: { relief: 'Elderberry works best started early — begin it today.', longterm: 'Vitamin D builds over weeks. Consistency matters more than dose.', maintenance: 'These two form a solid year-round immune support baseline.', natural: 'Elderberry is a whole berry extract; D3 from lichen is vegan-friendly.' }
   },
-  skin: { title: 'Skin & Glow Protocol', sub: 'Healing skin from the inside out naturally',
-    items: [
-      { icon:'✨', name:'Collagen Support Stack', detail:'Vitamin C 1000mg + Silica + Zinc · collagen synthesis trio' },
-      { icon:'🌿', name:'Spearmint Tea', detail:'2 cups daily · reduces hormonal acne in clinical studies' },
-      { icon:'🌸', name:'Evening Primrose Oil', detail:'1000mg · balances hormones, reduces skin inflammation' },
-      { icon:'📋', name:'Your Full Skin Plan', detail:'Inside-out routine, 7 more protocols & tracking', locked:true }
-    ]
+  skin: {
+    concern: 'skin issues',
+    unlocked: [
+      { icon:'💊', name:'Zinc', dose:'15–30 mg/day with food', detail:'Supports skin health.', warn:'Don\'t exceed recommended dose — long-term high doses affect copper balance.' },
+      { icon:'🐟', name:'Omega-3', dose:'1–2 g/day', detail:'Supports the skin barrier.' }
+    ],
+    lockedRows: [
+      { icon:'🍊', name:'Vitamin C (skin collagen)', dose:'500–1000 mg/day', detail:'🔒 Unlock with your trial' },
+      { icon:'💧', name:'Hydration plan', dose:'Daily guide', detail:'🔒 Unlock with your trial' },
+      { icon:'🦠', name:'Gut-skin protocol', dose:'Connection guide', detail:'🔒 Unlock with your trial' },
+    ],
+    durationFraming: { recent: 'a gentle starting point', months: 'a steady, build-over-time approach', year: 'a steady, build-over-time approach', chronic: 'a steady, build-over-time approach' },
+    goalFraming: { relief: 'Zinc can show early effects within 2–4 weeks.', longterm: 'Omega-3 works best with 8+ weeks of consistent daily use.', maintenance: 'These two support your skin from the inside out daily.', natural: 'Both are naturally sourced — zinc from food/plants, omega-3 from fish.' }
   }
 };
 
+const CONCERN_LABEL_MAP = { sleep:'sleep & fatigue', stress:'stress & anxiety', inflammation:'pain & inflammation', gut:'gut & digestion', immunity:'low immunity', skin:'skin issues' };
+const DURATION_LABEL_MAP = { recent:'just started', months:'a few months', year:'over a year', chronic:'chronic / years' };
+const GOAL_LABEL_MAP = { relief:'fast relief', longterm:'root healing', maintenance:'maintaining good health', natural:'going fully natural' };
+
 async function showResults() {
-  const name = document.getElementById('quizName').value.trim() || 'Friend';
-  if(!name) { alert('Please enter your first name.'); return; }
-
-  // Advance to results step
+  // Transition quiz step → plan reveal
   document.getElementById('step4').classList.remove('active');
-  document.getElementById('stepResults').classList.add('active');
-  updateProgress(5);
-  document.getElementById('resultsTitle').textContent = 'Building your plan...';
-  document.getElementById('resultsSub').textContent = 'Our AI is personalizing your protocol';
-  document.getElementById('resultsItems').innerHTML = '<div style="text-align:center;padding:24px;color:var(--sage);">🌿 Analyzing your answers...</div>';
+  document.getElementById('stepPlanReveal').classList.add('active');
+  planRevealOpen = true;
 
-  const prompt = `You are a natural wellness AI. A user just completed a wellness quiz. Build them a personalized natural remedy protocol. Return ONLY a JSON object with: {"title": "Protocol Name", "subtitle": "Short tagline", "items": [{"icon": "emoji", "name": "remedy name", "detail": "how to use + why it helps"}]} — exactly 3 items, keep it specific and actionable. Quiz answers: Main concern: ${answers.concern || 'general wellness'}, Duration: ${answers.duration || 'unknown'}, Experience: ${answers.experience || 'beginner'}, Goal: ${answers.goal || 'feel better'}.`;
-
-  try {
-    const res = await fetch('/api/chat', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ messages: [{role: 'user', content: prompt}], is_demo: true })
-    });
-    const data = await res.json();
-    let protocol;
-    try {
-      const raw = data.text || '';
-      const jsonMatch = raw.match(/\{[\s\S]*\}/);
-      protocol = jsonMatch ? JSON.parse(jsonMatch[0]) : null;
-    } catch(e) { protocol = null; }
-
-    if(protocol) {
-      document.getElementById('resultsTitle').textContent = protocol.title || `${name}'s Wellness Protocol`;
-      document.getElementById('resultsSub').textContent = protocol.subtitle || 'Personalized for your answers';
-      document.getElementById('resultsItems').innerHTML = (protocol.items || []).map((item, i) =>
-        `<div class="result-item ${i > 0 ? 'locked' : ''}">
-          <span class="ri-icon">${item.icon || '🌿'}</span>
-          <div class="ri-info"><div class="ri-name">${item.name}</div><div class="ri-detail">${i === 0 ? item.detail : '🔒 Unlock with free trial'}</div></div>
-        </div>`
-      ).join('');
-    } else {
-      setFallbackResults(name);
-    }
-  } catch(e) {
-    setFallbackResults(name);
-  }
+  // Show building animation for 1.5s then render plan
+  setTimeout(() => renderPlanReveal(), 1500);
 }
 
-function setFallbackResults(name) {
+function renderPlanReveal() {
+  const name = (document.getElementById('quizName').value.trim().split(' ')[0]) || 'Friend';
   const concern = answers.concern || 'sleep';
-  const protocols = {
-    sleep: {title: `${name}'s Sleep Protocol`, subtitle: 'Natural deep sleep support', items: [{icon:'💧',name:'Magnesium Glycinate',detail:'400mg before bed — relaxes muscles and quiets the nervous system'},{icon:'🌿',name:'Valerian Root',detail:'🔒 Unlock with free trial'},{icon:'🫖',name:'Passionflower Tea',detail:'🔒 Unlock with free trial'}]},
-    stress: {title: `${name}'s Stress Protocol`, subtitle: 'Adaptogen-powered calm', items: [{icon:'🌿',name:'Ashwagandha',detail:'300mg KSM-66 at night — may lower cortisol by 28%'},{icon:'🫖',name:'L-Theanine',detail:'🔒 Unlock with free trial'},{icon:'💧',name:'Magnesium',detail:'🔒 Unlock with free trial'}]},
-    inflammation: {title: `${name}'s Anti-Inflammation Plan`, subtitle: 'Root cause support', items: [{icon:'🌿',name:'Turmeric + Black Pepper',detail:'500mg with food — absorption boosted 2000% by pepper'},{icon:'💧',name:'Ginger Root',detail:'🔒 Unlock with free trial'},{icon:'🌿',name:'Boswellia',detail:'🔒 Unlock with free trial'}]},
-  };
-  const p = protocols[concern] || protocols.sleep;
-  document.getElementById('resultsTitle').textContent = p.title;
-  document.getElementById('resultsSub').textContent = p.subtitle;
-  document.getElementById('resultsItems').innerHTML = p.items.map(item =>
-    `<div class="result-item"><span class="ri-icon">${item.icon}</span><div class="ri-info"><div class="ri-name">${item.name}</div><div class="ri-detail">${item.detail}</div></div></div>`
+  const duration = answers.duration || 'recent';
+  const goal = answers.goal || 'relief';
+  const experience = answers.experience || 'none';
+
+  const plan = PLAN_REVEAL_MAP[concern] || PLAN_REVEAL_MAP['sleep'];
+  const framingDuration = plan.durationFraming[duration] || 'a gentle starting point';
+  const framingGoal = plan.goalFraming[goal] || '';
+  const concernLabel = CONCERN_LABEL_MAP[concern] || concern;
+  const durationLabel = DURATION_LABEL_MAP[duration] || duration;
+  const goalLabel = GOAL_LABEL_MAP[goal] || goal;
+
+  // A. Recap text
+  document.getElementById('prRecapText').innerHTML =
+    `Based on what you told us — <strong>${concernLabel}</strong>, dealing with it for <strong>${durationLabel}</strong>, goal: <strong>${goalLabel}</strong> — here's where we'd start you. We've built ${framingDuration} around your answers.`;
+  if(framingGoal) {
+    document.getElementById('prRecapText').innerHTML += `<br><span style="font-size:12px;opacity:0.75;margin-top:6px;display:block;">💡 ${framingGoal}</span>`;
+  }
+
+  // B. Unlocked items
+  const unlockedHtml = plan.unlocked.map(item => {
+    let warnHtml = item.warn ? `<div class="pr-item-warn">⚠️ ${item.warn}</div>` : '';
+    let beginnerNote = (experience === 'none') ? `<div style="font-size:11px;color:var(--moss);margin-top:4px;">✓ Beginner-friendly — introduce one item at a time and give it 2 weeks before evaluating.</div>` : '';
+    return `<div class="pr-item">
+      <div class="pr-item-icon">${item.icon}</div>
+      <div>
+        <div class="pr-item-name">${item.name}</div>
+        <div class="pr-item-dose">${item.dose}</div>
+        <div class="pr-item-detail">${item.detail}</div>
+        ${warnHtml}${beginnerNote}
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('prUnlockedItems').innerHTML = unlockedHtml;
+
+  // C. Locked / blurred rows (real blurred render, not a grey box)
+  const lockedHtml = plan.lockedRows.map(item =>
+    `<div class="pr-item">
+      <div class="pr-item-icon">${item.icon}</div>
+      <div><div class="pr-item-name">${item.name}</div><div class="pr-item-dose">${item.dose}</div></div>
+    </div>`
   ).join('');
+  document.getElementById('prLockedBlur').innerHTML = `<div class="pr-protocol-card" style="margin:0;">${lockedHtml}</div>`;
+
+  // Hide animation, show content
+  document.getElementById('planBuildingAnim').style.display = 'none';
+  document.getElementById('planRevealContent').style.display = 'block';
+  document.getElementById('planRevealContent').style.animation = 'fadeUp 0.4s ease both';
+}
+
+// Open signup from plan reveal — pre-fill name+email from quiz capture
+function openPlanRevealSignup() {
+  const qName = document.getElementById('quizName').value.trim();
+  const qEmail = document.getElementById('quizEmail').value.trim();
+  openSignup();
+  // Pre-fill step 1 fields if captured
+  setTimeout(() => {
+    if(qName) { const f = document.getElementById('signupName'); if(f && !f.value) f.value = qName; }
+    if(qEmail) { const f = document.getElementById('signupEmail'); if(f && !f.value) f.value = qEmail; }
+  }, 50);
+}
+
+// Two-step signup
+function goToStep2() {
+  const name = document.getElementById('signupName').value.trim();
+  const email = document.getElementById('signupEmail').value.trim();
+  const pass = document.getElementById('signupPass').value.trim();
+  if(!name || !email || !pass) { alert('Please fill in all fields to continue.'); return; }
+  if(!email.includes('@')) { alert('Please enter a valid email address.'); return; }
+  if(pass.length < 6) { alert('Password must be at least 6 characters.'); return; }
+  document.getElementById('signupStep1').classList.remove('active');
+  document.getElementById('signupStep2').classList.add('active');
+}
+
+function goToStep1() {
+  document.getElementById('signupStep2').classList.remove('active');
+  document.getElementById('signupStep1').classList.add('active');
 }
 
 // PRICING TOGGLE
@@ -747,6 +957,9 @@ function setPricing(type) {
 // SIGNUP MODAL
 function openSignup(plan) {
   if(plan) { selectedPlan = plan; selectPlan(plan); }
+  // Reset to step 1
+  document.getElementById('signupStep1').classList.add('active');
+  document.getElementById('signupStep2').classList.remove('active');
   document.getElementById('signupModal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
